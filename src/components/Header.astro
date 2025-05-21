@@ -1,5 +1,6 @@
 ---
 import Button from '../components/Button.astro';
+import Link from '../components/Link.astro';
 ---
 
 <nav
@@ -26,8 +27,8 @@ import Button from '../components/Button.astro';
   :class="{ '-translate-y-full': isHidden }"
   class="fixed top-0 left-0 w-full z-50 bg-base-100 px-7 py-4 flex justify-between items-center transition-transform duration-500 ease-in-out">
     <!-- Logo -->
-  <a href="/" class="text-xl font-bold font-bebas tracking-wider">
-    <img src="/logo.png" alt="Logo" class="w-28 md:w-32 lg:w-70" />
+  <a href="/" class="tracking-wider">
+    <img src="/logo.png" alt="Logo" class="w-28 md:w-45 lg:w-70" />
   </a>
 
   <!-- Burger Menu Button -->
@@ -71,25 +72,19 @@ import Button from '../components/Button.astro';
       </button>
 
       <!-- Nav links -->
-      <a href="/løbsmuligheder" @click="open = false" class="text-orange-50 text-3xl font-instrument hover:underline">LØBSMULIGHEDER</a>
-      <a href="/ruten" @click="open = false" class="text-orange-50 text-3xl font-instrument hover:underline">RUTEN</a>
-      <a href="/faq" @click="open = false" class="text-orange-50 text-3xl font-instrument hover:underline">FAQ</a>
-      <a href="/tilmeld" @click="open = false" class="bg-orange-50 text-3xl text-orange-700 font-instrument border-none px-4 py-2 mt-4">
-        TILMELD
-      </a>
+      <a href="/løbsmuligheder" @click="open = false" class="text-orange-50 text-3xl font-instrument">LØBSMULIGHEDER</a>
+      <a href="/ruten" @click="open = false" class="text-orange-50 text-3xl font-instrument">RUTEN</a>
+      <a href="/faq" @click="open = false" class="text-orange-50 text-3xl font-instrument">FAQ</a>
+      <Button @click="open = false" size="lg" color="white" text="TILMELD" href="/kontakt"></Button>
     </div>
   </div>
 
   <!-- Desktop nav -->
-  <div class="hidden md:flex gap-4 items-center">
-    <a href="/løbsmuligheder" class="text-orange-700 text-large font-instrument hover:underline ml-10">LØBSMULIGHEDER</a>
-    <a href="/ruten" class="text-orange-700 text-large font-instrument hover:underline ml-10">RUTEN</a>
-    <a href="/faq" class="text-orange-700 text-large font-instrument hover:underline ml-10">FAQ</a>
-    
-
-<Button></Button>
-
-
+  <div class="hidden md:flex gap-2 items-center">
+    <Link size="lg" color="orange" text="LØBSMULIGHEDER" href="/løbsmuligheder"></Link>
+    <Link size="md" color="orange" text="RUTEN" href="/ruten"></Link>
+    <Link size="md" color="orange" text="FAQ" href="/FAQ"></Link>
+    <Button size="md" color="orange" text="TILMELD" href="/løbsmuligheder"></Button>
 </div>
 
 </nav>

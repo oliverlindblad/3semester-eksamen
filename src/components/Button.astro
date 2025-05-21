@@ -1,43 +1,51 @@
 ---
-// Henter parametrene fra Astro.props
-const { variant= "primary", size = "medium" } = Astro.props; 
- 
-//Definer den styling (Tailwind classes, der gør sig gældende for alle knapper
-const buttonStyling = "bg-orange-900 hover:bg-orange-500 text-orange-50 rounded-xl font-normal font-serif"; 
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskellige varianter 
-const variantClasses = {
-"default": "default",
-"primary": "bg-orange-900 hover:bg-orange-500 text-orange-50 p-3 rounded-xl font-normal font-serif",
+// Props med defaults
+const { size = "md", color = "orange", href = "#", invisible = "TILMELD" , text = "TILMELD" } = Astro.props;
+
+// Minimal opslags-tabeller
+const sizes = {
+  sm: "h-7  px-4 py-1 text-sm",
+  md: "h-10 px-6 py-2 text-lg",
+  lg: "h-11 px-12 py-4 text-2xl",
 };
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskelligeog størrelser.
-const sizeClasses = {
-"large": "btn-lg",
-"medium": "",
-"small": "btn-sm"
+
+const colors = {
+  orange: "bg-orange-700 text-orange-50",
+  white : "bg-orange-50  text-orange-700 text-3xl",
 };
+
+// Saml Tailwind-klasserne
+const cls = `
+  relative inline-block overflow-hidden font-instrument group
+  ${sizes[size]} ${colors[color]}
+`.replace(/\s+/g, " ");
 ---
-<button>
-    <a href="/tilmeld"class="relative inline-block h-10 min-w-[8rem] overflow-hidden bg-orange-700 px-6 py-2 font-instrument text-lg text-orange-50 group">
-<!-- placeholder bevarer bredden -->
-<span class="invisible select-none">TILMELD</span>
 
-<!-- fælles flex-container som ligger 100 % centreret -->
-<span class="absolute inset-0 flex items-center justify-center">
-<!-- udgående tekst -->
-<span class="transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
-  TILMELD
-</span>
+<a href={href} class={cls}>
+  <!-- Placeholder holder bredden -->
+  <span class="invisible select-none"> {invisible}<slot /></span>
 
-<!-- indgående tekst (starter nedenfor) -->
-<span class="absolute flex items-center justify-center translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0">
-  <span class="relative">
-    TILMELD
-    <!-- underline -->
-    <span class="absolute left-0 bottom-0 h-px w-0 bg-orange-50 transition-all duration-300 group-hover:w-full"></span>
+  <!-- Centreret flex-lag -->
+  <span class="absolute inset-0 flex items-center justify-center">
+    <!-- Udgående tekst -->
+    <span class="transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+      {text}<slot />
+    </span>
+
+    <!-- Indgående tekst -->
+    <span
+      class="absolute flex items-center justify-center translate-y-full transition-transform
+             duration-300 ease-in-out group-hover:translate-y-0">
+      <span class="relative">
+        {text}<slot />
+        <!-- Understregning -->
+        <span
+          class="absolute left-0 bottom-0 h-px w-0 bg-current transition-all duration-300
+                 group-hover:w-full" />
+      </span>
+    </span>
   </span>
-</span>
-</span>
 </a>
-</button>
+
+
+
