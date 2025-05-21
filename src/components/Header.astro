@@ -1,5 +1,95 @@
 ---
+import Button from '../components/Button.astro';
 ---
-<div>
-Header - tilføj navigation mm.
+
+<nav
+  x-data="{
+    lastScrollY: 0,
+    isHidden: false,
+    init() {
+      window.addEventListener('scroll', () => {
+        const current = window.scrollY;
+
+        // kun på desktop
+        if (window.innerWidth >= 768) {
+          if (current > this.lastScrollY && current > 100) {
+            this.isHidden = true;  // scroller ned
+          } else {
+            this.isHidden = false; // scroller op
+          }
+        }
+
+        this.lastScrollY = current;
+      });
+    }
+  }"
+  :class="{ '-translate-y-full': isHidden }"
+  class="fixed top-0 left-0 w-full z-50 bg-base-100 px-7 py-4 flex justify-between items-center transition-transform duration-500 ease-in-out">
+    <!-- Logo -->
+  <a href="/" class="text-xl font-bold font-bebas tracking-wider">
+    <img src="/logo.png" alt="Logo" class="w-28 md:w-32 lg:w-70" />
+  </a>
+
+  <!-- Burger Menu Button -->
+  <div x-data="{ open: false }">
+    <button
+      @click="open = true"
+      class="md:hidden"
+      aria-label="Åbn menu"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+        viewBox="0 0 24 24" stroke="black">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Fullscreen Slide-in Menu -->
+    <div
+  x-show="open"
+  x-transition:enter="transition ease-in-out duration-800 transform"
+  x-transition:enter-start="-translate-y-full opacity-0"
+  x-transition:enter-end="translate-y-0 opacity-100"
+  x-transition:leave="transition ease-in-out duration-800 transform"
+  x-transition:leave-start="translate-y-0 opacity-100"
+  x-transition:leave-end="-translate-y-full opacity-0"
+  class="fixed inset-0 bg-orange-700 z-50 flex flex-col items-center justify-center space-y-6 text-2xl font-medium"
+  style="display: none"
+>
+
+      <!-- Close button -->
+      <button
+        @click="open = false"
+        class="absolute top-6 right-7 text-base-content"
+        aria-label="Luk menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+          viewBox="0 0 24 24" stroke="white">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Nav links -->
+      <a href="/løbsmuligheder" @click="open = false" class="text-orange-50 text-3xl font-instrument hover:underline">LØBSMULIGHEDER</a>
+      <a href="/ruten" @click="open = false" class="text-orange-50 text-3xl font-instrument hover:underline">RUTEN</a>
+      <a href="/faq" @click="open = false" class="text-orange-50 text-3xl font-instrument hover:underline">FAQ</a>
+      <a href="/tilmeld" @click="open = false" class="bg-orange-50 text-3xl text-orange-700 font-instrument border-none px-4 py-2 mt-4">
+        TILMELD
+      </a>
+    </div>
+  </div>
+
+  <!-- Desktop nav -->
+  <div class="hidden md:flex gap-4 items-center">
+    <a href="/løbsmuligheder" class="text-orange-700 text-large font-instrument hover:underline ml-10">LØBSMULIGHEDER</a>
+    <a href="/ruten" class="text-orange-700 text-large font-instrument hover:underline ml-10">RUTEN</a>
+    <a href="/faq" class="text-orange-700 text-large font-instrument hover:underline ml-10">FAQ</a>
+    
+
+<Button></Button>
+
+
 </div>
+
+</nav>
