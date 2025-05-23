@@ -1,0 +1,85 @@
+---
+const { targetDate } = Astro.props;
+---
+
+<div class="grid md:grid-cols-2 items-center gap-10 p-6">
+  <!-- Venstre: Tekst -->
+  <div>
+    <h2 class="text-4xl font-bold mb-4">Raceday 2025</h2>
+    <p class="text-xl text-gray-600">D. 4. august kl. 09:30</p>
+  </div>
+
+  <!-- Højre: Countdown -->
+  <div class="flex gap-8 justify-end text-6xl font-mono">
+    <div class="flex items-baseline gap-1">
+      <span id="days" style="--value:15;">15</span><span class="text-6xl font-sans">D</span>
+    </div>
+    <div class="flex items-baseline gap-1">
+      <span id="hours" style="--value:10;">10</span><span class="text-6xl font-sans">H</span>
+    </div>
+    <div class="flex items-baseline gap-1">
+      <span id="minutes" style="--value:24;">24</span><span class="text-6xl font-sans">M</span>
+    </div>
+    <div class="flex items-baseline gap-1">
+      <span id="seconds" style="--value:59;">59</span><span class="text-6xl font-sans">S</span>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+{`
+  (function() {
+    const target = new Date(${JSON.stringify(targetDate)});
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        update(0, 0, 0, 0);
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      update(days, hours, minutes, seconds);
+    }
+
+    function update(d, h, m, s) {
+      document.getElementById("days").textContent = d;
+      document.getElementById("hours").textContent = h;
+      document.getElementById("minutes").textContent = m;
+      document.getElementById("seconds").textContent = s;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+  })();
+`}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
