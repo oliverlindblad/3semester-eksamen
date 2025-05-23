@@ -3,34 +3,45 @@
 const { targetDate = "2025-08-04T09:30:00" } = Astro.props;
 ---
 
-<div 
-  x-data="countdownTimer()" 
+<div
+  x-data="countdownTimer()"
   x-init={`start("${targetDate}")`}
- 
-  class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-6 text-[#B64014] font-sans"
+  class="grid grid-cols-2 gap-4 md:gap-6 items-center p-4 sm:p-6 text-orange-700"
 >
   <!-- Venstre side -->
-  <div class="text-left space-y-1">
-    <h2 class="text-3xl md:text-4xl font-oswald">Race day 2025</h2>
-    <p class="text-xl md:text-2xl font-oswald"> 4. august 9.30</p>
+  <div class="space-y-1">
+    <!-- mindre tekst på mobil, større på større skærme -->
+    <h2 class="text-2xl sm:text-3xl md:text-6xl font-oswald leading-tight">
+      Race Day 2025
+    </h2>
+    <p class="text-base sm:text-xl md:text-3xl font-oswald">
+      4. August 9.30
+    </p>
   </div>
 
   <!-- Højre side -->
-  <div class="flex justify-start md:justify-end gap-4 text-3xl md:text-6xl font-bold font-mono">
-    <div class="flex items-baseline gap-1">
-      <span x-text="days">00</span><span class="text-base md:text-6xl font-bebas">D</span>
+  <div
+    class="flex justify-start md:justify-end gap-2 sm:gap-4 text-3xl sm:text-4xl md:text-8xl font-bebas"
+  >
+    <div class="flex items-baseline gap-0.5 sm:gap-1">
+      <span x-text="days">00</span
+      ><span class="text-xs sm:text-lg md:text-8xl font-bebas">D</span>
     </div>
-    <div class="flex items-baseline gap-1">
-      <span x-text="hours">00</span><span class="text-base md:text-6xl font-bebas">T</span>
+    <div class="flex items-baseline gap-0.5 sm:gap-1">
+      <span x-text="hours">00</span
+      ><span class="text-xs sm:text-lg md:text-8xl font-bebas">T</span>
     </div>
-    <div class="flex items-baseline gap-1">
-      <span x-text="minutes">00</span><span class="text-base md:text-6xl font-bebas">M</span>
+    <div class="flex items-baseline gap-0.5 sm:gap-1">
+      <span x-text="minutes">00</span
+      ><span class="text-xs sm:text-lg md:text-8xl font-bebas">M</span>
     </div>
-    <div class="flex items-baseline gap-1">
-      <span x-text="seconds">00</span><span class="text-base md:text-6xl font-bebas">S</span>
+    <div class="flex items-baseline gap-0.5 sm:gap-1">
+      <span x-text="seconds">00</span
+      ><span class="text-xs sm:text-lg md:text-8xl font-bebas">S</span>
     </div>
   </div>
 </div>
+
 
 <script is:inline>
   function countdownTimer() {
