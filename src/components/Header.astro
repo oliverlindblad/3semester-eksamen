@@ -72,19 +72,19 @@ import Link from '../components/Link.astro';
       </button>
 
       <!-- Nav links -->
-      <a href="/løbsmuligheder" @click="open = false" class="text-orange-50 text-3xl font-instrument">LØBSMULIGHEDER</a>
+      <a href="/billetter" @click="open = false" class="text-orange-50 text-3xl font-instrument">LØBSMULIGHEDER</a>
       <a href="/ruten" @click="open = false" class="text-orange-50 text-3xl font-instrument">RUTEN</a>
       <a href="/faq" @click="open = false" class="text-orange-50 text-3xl font-instrument">FAQ</a>
-      <Button @click="open = false" size="lg" color="white" text="TILMELD" href="/kontakt"></Button>
+      <Button @click="open = false" size="lg" color="white" text="TILMELD" href="/billetter"></Button>
     </div>
   </div>
 
   <!-- Desktop nav -->
   <div class="hidden md:flex gap-2 items-center">
-    <Link size="lg" color="orange" text="LØBSMULIGHEDER" href="/løbsmuligheder"></Link>
+    <Link size="lg" color="orange" text="LØBSMULIGHEDER" href="/billetter"></Link>
     <Link size="md" color="orange" text="RUTEN" href="/ruten"></Link>
-    <Link size="md" color="orange" text="FAQ" href="/FAQ"></Link>
-    <Button size="md" color="orange" text="TILMELD" href="/løbsmuligheder"></Button>
+    <Link size="md" color="orange" text="FAQ" href="/faq"></Link>
+    <Button size="md" color="orange" text="TILMELD" href="/billetter"></Button>
 </div>
 
 </nav>

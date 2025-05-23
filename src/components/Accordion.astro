@@ -1,46 +1,39 @@
-<div class="join join-vertical bg-base-100">
-  <div class="collapse collapse-arrow join-item">
-    <input type="radio" name="my-accordion-4" id="acc1" class="peer hidden" checked />
-    <label for="acc1" class="collapse-title font-semibold cursor-pointer pb-2">
-      How do I create an account?
-    </label>
-    <div class="collapse-content text-sm max-h-0 overflow-hidden peer-checked:max-h-40 transition-all duration-300 ease-in-out">
-      Click the "Sign Up" button in the top right corner and follow the registration process.
-    </div>
-    <!-- Streger, som flytter sig -->
-    <div class="border-b border-gray-300 transition-all duration-300 ease-in-out
-      peer-checked:mt-2 mt-0">
-    </div>
-  </div>
+---
+const { overskrift = "Overskrift", tekst = "Tekst" } = Astro.props;
+const id = crypto.randomUUID();
+---
 
-  <div class="collapse collapse-arrow join-item">
-    <input type="radio" name="my-accordion-4" id="acc2" class="peer hidden" />
-    <label for="acc2" class="collapse-title font-semibold cursor-pointer pb-2">
-      I forgot my password. What should I do?
-    </label>
-    <div class="collapse-content text-sm max-h-0 overflow-hidden peer-checked:max-h-40 transition-all duration-300 ease-in-out">
-      Click on "Forgot Password" on the login page and follow the instructions sent to your email.
-    </div>
-    <div class="border-b border-gray-300 transition-all duration-300 ease-in-out
-      peer-checked:mt-2 mt-0">
-    </div>
-  </div>
+<div class="w-full max-w-xl mx-auto">
+  <div class="border-b border-black">
+    <input type="checkbox" id={id} class="peer hidden" />
 
-  <div class="collapse collapse-arrow join-item">
-    <input type="radio" name="my-accordion-4" id="acc3" class="peer hidden" />
-    <label for="acc3" class="collapse-title font-semibold cursor-pointer pb-2">
-      How do I update my profile information?
+    <!-- overskrift + pil -->
+    <label
+      for={id}
+      class="flex justify-between items-center px-4 py-3 font-oswald cursor-pointer text-base sm:text-lg"
+    >
+      <span>{overskrift}</span>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 transition-transform origin-center duration-300 peer-checked:rotate-180"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="black"
+        stroke-width="2"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
     </label>
-    <div class="collapse-content text-sm max-h-0 overflow-hidden peer-checked:max-h-40 transition-all duration-300 ease-in-out">
-      Go to "My Account" settings and select "Edit Profile" to make changes.
-    </div>
-    <div class="border-b border-gray-300 transition-all duration-300 ease-in-out
-      peer-checked:mt-2 mt-0">
+
+    <!-- indhold: skjult (ingen padding) → vises med padding og højde -->
+    <div
+      class="px-0 pb-0 max-h-0 overflow-hidden
+             transition-[max-height,padding] duration-500 ease-in-out
+             peer-checked:max-h-96 peer-checked:px-4 peer-checked:pb-4
+             font-instrument text-sm sm:text-base text-orange-700 leading-relaxed"
+    >
+      {tekst}
     </div>
   </div>
 </div>
-
-
-
-
-
