@@ -1,0 +1,46 @@
+---
+const sponsors = [
+  { name: "danbolig", src: "/danbolig_ny.png", alt: "Danbolig logo" },
+  { name: "rema", src: "/rema.png", alt: "Rema logo" },
+  { name: "tempur", src: "/tempur.png", alt: "Tempur logo" },
+  { name: "fyens", src: "/fyens_stillads_ny.png", alt: "Fyens Stillads logo" },
+  { name: "europcar", src: "/europcar_ny.png", alt: "Europcar logo" },
+  { name: "dripa", src: "/dripa_ny.png", alt: "Dripa logo" },
+  { name: "albani", src: "/albani_ny.png", alt: "Albani logo" },
+];
+---
+<div class="w-screen relative left-1/2 right-1/2 -translate-x-1/2 overflow-hidden border-y border-black py-6">
+  <div class="flex gap-12 whitespace-nowrap animate-marquee min-w-[200%]">
+    {[...sponsors, ...sponsors].map((sponsor, index) => (
+      <div class="w-40 h-20 md:w-52 md:h-24 flex items-center justify-center" key={index}>
+        <img 
+          src={sponsor.src} 
+          alt={sponsor.alt} 
+          class="h-full object-contain animate-logo" 
+          loading="lazy" 
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes pulse-logo {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-logo {
+  animation: pulse-logo 5s ease-in-out infinite;
+}
+</style>
+
