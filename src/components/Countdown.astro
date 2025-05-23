@@ -1,85 +1,71 @@
 ---
-const { targetDate } = Astro.props;
+// Props
+const { targetDate = "2025-08-04T09:30:00" } = Astro.props;
 ---
 
-<div class="grid md:grid-cols-2 items-center gap-10 p-6">
-  <!-- Venstre: Tekst -->
-  <div>
-    <h2 class="text-4xl font-bold mb-4">Raceday 2025</h2>
-    <p class="text-xl text-gray-600">D. 4. august kl. 09:30</p>
+<div 
+  x-data="countdownTimer()" 
+  x-init={`start("${targetDate}")`}
+ 
+  class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-6 text-[#B64014] font-sans"
+>
+  <!-- Venstre side -->
+  <div class="text-left space-y-1">
+    <h2 class="text-3xl md:text-4xl font-oswald">Race day 2025</h2>
+    <p class="text-xl md:text-2xl font-oswald"> 4. august 9.30</p>
   </div>
 
-  <!-- Højre: Countdown -->
-  <div class="flex gap-8 justify-end text-6xl font-mono">
+  <!-- Højre side -->
+  <div class="flex justify-start md:justify-end gap-4 text-3xl md:text-6xl font-bold font-mono">
     <div class="flex items-baseline gap-1">
-      <span id="days" style="--value:15;">15</span><span class="text-6xl font-sans">D</span>
+      <span x-text="days">00</span><span class="text-base md:text-6xl font-bebas">D</span>
     </div>
     <div class="flex items-baseline gap-1">
-      <span id="hours" style="--value:10;">10</span><span class="text-6xl font-sans">H</span>
+      <span x-text="hours">00</span><span class="text-base md:text-6xl font-bebas">T</span>
     </div>
     <div class="flex items-baseline gap-1">
-      <span id="minutes" style="--value:24;">24</span><span class="text-6xl font-sans">M</span>
+      <span x-text="minutes">00</span><span class="text-base md:text-6xl font-bebas">M</span>
     </div>
     <div class="flex items-baseline gap-1">
-      <span id="seconds" style="--value:59;">59</span><span class="text-6xl font-sans">S</span>
+      <span x-text="seconds">00</span><span class="text-base md:text-6xl font-bebas">S</span>
     </div>
   </div>
 </div>
 
 <script is:inline>
-{`
-  (function() {
-    const target = new Date(${JSON.stringify(targetDate)});
+  function countdownTimer() {
+    return {
+      days: '00',
+      hours: '00',
+      minutes: '00',
+      seconds: '00',
+      interval: null,
+      start(targetString) {
+        const target = new Date(targetString);
+        if (isNaN(target)) {
+          console.error('Ugyldig dato:', targetString);
+          return;
+        }
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = target - now;
+        const update = () => {
+          const now = new Date();
+          const diff = target - now;
 
-      if (diff <= 0) {
-        update(0, 0, 0, 0);
-        clearInterval(interval);
-        return;
+          if (diff <= 0) {
+            this.days = this.hours = this.minutes = this.seconds = '00';
+            clearInterval(this.interval);
+            return;
+          }
+
+          this.days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+          this.hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+          this.minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+          this.seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+        };
+
+        update();
+        this.interval = setInterval(update, 1000);
       }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      update(days, hours, minutes, seconds);
     }
-
-    function update(d, h, m, s) {
-      document.getElementById("days").textContent = d;
-      document.getElementById("hours").textContent = h;
-      document.getElementById("minutes").textContent = m;
-      document.getElementById("seconds").textContent = s;
-    }
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-  })();
-`}
+  }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
