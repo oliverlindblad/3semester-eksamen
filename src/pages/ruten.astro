@@ -1,0 +1,117 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Button from '../components/Button.astro';
+import Link from '../components/Link.astro';
+import Countdown from '../components/Countdown.astro';
+import Banner from '../components/Banner.astro';
+import { Image } from 'astro:assets';
+import thumbsup from "../assets/images/thumbsup.png";
+---
+
+<MainLayout title="Rute">
+<!-- 1) Video-sektionen, helt fri for billedet -->
+<section
+  class="relative max-w-[900px] w-full h-[600px] mx-auto overflow-hidden mt-16"
+>
+  <video
+    autoplay
+    muted
+    loop
+    class="absolute inset-0 w-full h-full object-cover"
+  >
+    <source src="/HCA-Marathon-NY.mp4" type="video/mp4" />
+  </video>
+</section>
+
+<!-- 2) Overskrifts-billedet ligger _udenfor_ video-sektionen -->
+<div
+  class="relative w-full flex justify-center pointer-events-none -mt-[800px] z-10"
+>
+  <img
+    src="/udforsk-ruten.webp"
+    alt="Udforsk ruten"
+    class="w-[100vw] max-w-none object-contain"
+  />
+</div>
+
+<!-- 3) Tilmeldings-delen _under_ både video og billede -->
+<section class="text-center max-w-[900px] w-full mx-auto -mt-70 px-4 z-20 relative">
+  <p class="text-xl md:text-2xl font-semibold text-[#B64014]">21,097 KM</p>
+  <a href="/tilmelding" class="text-[#B64014] underline block mt-1">Tilmeld dig</a>
+  <img src="/icon.svg" alt="scroll ikon" class="w-6 mx-auto mt-6" />
+</section>
+
+
+
+
+
+
+
+
+
+  <!-- Strava kort og beskrivelse -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+      <div>
+        <h2 class="text-4xl font-bold text-[#B64014] mb-6">STRAVA KORT</h2>
+        <p class="text-neutral-700 text-lg leading-relaxed">
+          Ruten er en 21,097 km rundstrækning gennem Odenses gader. Vi har sørget for masser af musik...
+        </p>
+        <p class="mt-6 text-neutral-700 text-lg leading-relaxed">
+          På ruten er der cyklende samaritter. Udgår du af løbet...
+        </p>
+      </div>
+      <img src="/images/stravakort.png" alt="Strava kort" class="rounded-xl shadow-md" />
+    </div>
+  </section>
+
+  <!-- Zonetyper -->
+  <section class="bg-[#f9f4eb] py-20 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+      <div class="bg-white rounded-xl overflow-hidden shadow">
+        <img src="/images/forplejning.jpg" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-[#B64014] text-2xl font-semibold mb-2">Forplejningszoner</h3>
+          <p class="text-neutral-800 text-sm">Forplejningszonerne i HCA Marathon byder på...</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl overflow-hidden shadow">
+        <img src="/images/stemning.jpg" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-[#B64014] text-2xl font-semibold mb-2">Stemningszoner</h3>
+          <p class="text-neutral-800 text-sm">Stemningszonerne under HCA Marathon skaber fest...</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl overflow-hidden shadow">
+        <img src="/images/high5.jpg" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-[#B64014] text-2xl font-semibold mb-2">High5-energi på ruten</h3>
+          <p class="text-neutral-800 text-sm">Det er vores sponsor, High5, der leverer energien...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forplejningszone-tabel -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-[#B64014] text-3xl font-bold mb-8">FORPLEJINGSZONER</h2>
+      <table class="w-full text-left border-separate border-spacing-y-4">
+        <thead class="text-[#B64014] font-semibold text-lg">
+          <tr>
+            <th>Placering</th>
+            <th>Vejside</th>
+            <th>Forplejning</th>
+          </tr>
+        </thead>
+        <tbody class="text-[#B64014] text-md">
+          <tr><td>2,5 KM</td><td>Højre</td><td>High5 energidrik og kildevand</td></tr>
+          <tr><td>5 KM</td><td>Højre</td><td>Egen forplejning, High5 energidrik og kildevand</td></tr>
+          <tr><td>7,5 KM</td><td>Højre</td><td>High5 energidrik og kildevand</td></tr>
+          <tr><td>10 KM</td><td>Højre</td><td>Egen forplejning, High5 energidrik og kildevand</td></tr>
+          <tr><td>12,5 KM</td><td>Højre</td><td>High5 energidrik og kildevand</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</MainLayout>
