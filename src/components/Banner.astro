@@ -8,7 +8,9 @@ const sponsors = [
   { name: "dripa", src: "/dripa_ny.png", alt: "Dripa logo" },
   { name: "albani", src: "/albani_ny.png", alt: "Albani logo" },
 ];
+const loop = [...sponsors, ...sponsors];
 ---
+<<<<<<< HEAD
 <div class="w-screen relative left-1/2 right-1/2 -translate-x-1/2 overflow-hidden border-y border-black py-6">
   <div class="flex gap-12 whitespace-nowrap animate-marquee min-w-[200%]">
     {[...sponsors, ...sponsors].map((sponsor, index) => (
@@ -18,6 +20,24 @@ const sponsors = [
           alt={sponsor.alt} 
           class="h-full object-contain animate-logo" 
           loading="lazy" 
+=======
+
+<div class="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden border-y border-black py-6">
+  <div class="flex items-center flex-nowrap gap-6 animate-marquee min-w-max px-4">
+    {loop.map((sponsor, i) => (
+      <div
+        key={i}
+        class="flex-shrink-0
+               w-32     sm:w-40     md:w-52      /* bredde pr. logo */
+               flex items-center justify-center"
+      >
+        <img
+          src={sponsor.src}
+          alt={sponsor.alt}
+          class="h-16    sm:h-20    md:h-24      /* højde pr. logo */
+                 w-auto object-contain animate-logo"
+          loading="lazy"
+>>>>>>> 908e6ef57cc027b398b06126016706149b99bfb3
         />
       </div>
     ))}
@@ -26,21 +46,18 @@ const sponsors = [
 
 <style>
 @keyframes marquee {
-  0% { transform: translateX(0%); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
 
 @keyframes pulse-logo {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.05); }
 }
-
 .animate-logo {
   animation: pulse-logo 5s ease-in-out infinite;
 }
 </style>
-
