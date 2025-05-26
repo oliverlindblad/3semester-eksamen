@@ -10,17 +10,6 @@ const sponsors = [
 ];
 const loop = [...sponsors, ...sponsors];
 ---
-<<<<<<< HEAD
-<div class="w-screen relative left-1/2 right-1/2 -translate-x-1/2 overflow-hidden border-y border-black py-6">
-  <div class="flex gap-12 whitespace-nowrap animate-marquee min-w-[200%]">
-    {[...sponsors, ...sponsors].map((sponsor, index) => (
-      <div class="w-40 h-20 md:w-52 md:h-24 flex items-center justify-center" >
-        <img 
-          src={sponsor.src} 
-          alt={sponsor.alt} 
-          class="h-full object-contain animate-logo" 
-          loading="lazy" 
-=======
 
 <div class="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden border-y border-black py-6">
   <div class="flex items-center flex-nowrap gap-6 animate-marquee min-w-max px-4">
@@ -37,7 +26,6 @@ const loop = [...sponsors, ...sponsors];
           class="h-16    sm:h-20    md:h-24      /* højde pr. logo */
                  w-auto object-contain animate-logo"
           loading="lazy"
->>>>>>> 908e6ef57cc027b398b06126016706149b99bfb3
         />
       </div>
     ))}
