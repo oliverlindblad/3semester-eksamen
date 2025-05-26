@@ -4,6 +4,7 @@ import Button from '../components/Button.astro';
 import Link from '../components/Link.astro';
 import Countdown from '../components/Countdown.astro';
 import Banner from '../components/Banner.astro';
+import Footer from "../components/Footer.astro";
 import { Image } from 'astro:assets';
 import thumbsup from "../assets/images/thumbsup.png";
 ---
@@ -59,7 +60,7 @@ import thumbsup from "../assets/images/thumbsup.png";
           
       
         <!-- INDHOLD -->
-         <section x-ref="content" class=" pt-20"></section>
+         <section x-ref="content" class=" pt-30"></section>
         <div x-show="active" x-transition  class="mt-10">
           <!-- HALV MARATHON -->
           <div x-show="active === 'halv'" x-transition>
@@ -88,10 +89,13 @@ import thumbsup from "../assets/images/thumbsup.png";
               </div>
             </div>
           </div>
+          <div x-show="active === 'halv'" x-transition class="pt-30 md:pt-40">
+            <Countdown targetDate="2025-08-04T09:30:00" />
+            </div>
           
 
           <div x-show="active === 'halv'" x-transition>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0 max-w-6xl mx-auto mt-16 px-4 pt-20 items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0 max-w-6xl mx-auto mt-16 px-4 pt-30 items-stretch">
             <!-- VENSTRE SIDE -->
             <div class="flex flex-col justify-between border-t border-black">
               <!-- Overskrift -->
@@ -163,18 +167,13 @@ import thumbsup from "../assets/images/thumbsup.png";
             <p>Indhold for Mini Marathon…</p>
           </div>
         </div>
-        <div x-show="active === 'halv'" x-transition class="pt-20">
-            <Countdown targetDate="2025-08-04T09:30:00" />
-            </div>
-            <div x-show="active === 'halv'" x-transition class="pt-20">
+       
+            <div x-show="active === 'halv'" x-transition class="pt-30">
                 <Banner/>
                 </div>
+                <div x-show="active === 'halv'" x-transition class="pt-30">
+                    <Footer/>
+                    </div> 
       </section>
-
-
-     
-
-     
-      
 
 </MainLayout>
