@@ -11,7 +11,7 @@ import thumbsup from "../assets/images/thumbsup.png";
 <MainLayout title="Rute">
 <!-- 1) Video-sektionen alene -->
 <section
-  class="relative max-w-[900px] w-full h-[600px] mx-auto overflow-hidden mt-2"
+  class="relative max-w-[900px] w-full h-auto mx-auto overflow-hidden mt-2"
   style="aspect-ratio:16/9;"
 >
   <video
@@ -20,14 +20,14 @@ import thumbsup from "../assets/images/thumbsup.png";
     loop
     class="absolute inset-0 w-full h-full object-cover"
   >
-    <source src="/HCA-Marathon-NY.mp4" type="video/mp4" />
+    <source src="public/hca-ruten.mp4" type="video/mp4" />
   </video>
 </section>
 
 <!-- 2) Overskrifts-billedet UDENFOR videoen -->
 <div
   class="relative w-full flex justify-center pointer-events-none
-         -mt-[500px]  /* trækker billedet op over videoen */
+         -mt-[450px]  /* trækker billedet op over videoen */
          z-10"
 >
   <img
@@ -38,14 +38,14 @@ import thumbsup from "../assets/images/thumbsup.png";
       sm:w-[140%]     /* 140% fra small screens */
       md:w-[160%]     /* 160% fra medium screens */
       lg:w-[100%]     /* 180% fra large screens */
-      max-w-none
+      max-w-250
       object-contain
     "
   />
 </div>
 
 <!-- 3) Tilmeldings-sektionen under -->
-<section class="text-center max-w-[900px] w-full mx-auto mt-2 px-4">
+<section class="text-center max-w-[900px] w-full mx-auto mt-20 px-4">
   <p class="text-xl md:text-2xl font-semibold text-[#B64014]">21,097 KM</p>
   <a href="/tilmelding" class="text-[#B64014] underline block mt-1">Tilmeld dig</a>
   
@@ -61,7 +61,7 @@ import thumbsup from "../assets/images/thumbsup.png";
 
 
   <!-- Strava kort og beskrivelse -->
-  <section class="bg-white py-20 px-6">
+  <section class="bg-white py-20 px-6 mt-30">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
       <div>
         <h2 class="text-4xl font-bold text-[#B64014] mb-6">STRAVA KORT</h2>
