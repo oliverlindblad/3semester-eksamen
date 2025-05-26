@@ -9,9 +9,10 @@ import thumbsup from "../assets/images/thumbsup.png";
 ---
 
 <MainLayout title="Rute">
-<!-- 1) Video-sektionen, helt fri for billedet -->
+<!-- 1) Video-sektionen alene -->
 <section
-  class="relative max-w-[900px] w-full h-[600px] mx-auto overflow-hidden mt-16"
+  class="relative max-w-[900px] w-full h-[600px] mx-auto overflow-hidden mt-2"
+  style="aspect-ratio:16/9;"
 >
   <video
     autoplay
@@ -23,23 +24,33 @@ import thumbsup from "../assets/images/thumbsup.png";
   </video>
 </section>
 
-<!-- 2) Overskrifts-billedet ligger _udenfor_ video-sektionen -->
+<!-- 2) Overskrifts-billedet UDENFOR videoen -->
 <div
-  class="relative w-full flex justify-center pointer-events-none -mt-[800px] z-10"
+  class="relative w-full flex justify-center pointer-events-none
+         -mt-[700px]  /* trækker billedet op over videoen */
+         z-10"
 >
   <img
     src="/udforsk-ruten.webp"
     alt="Udforsk ruten"
-    class="w-[100vw] max-w-none object-contain"
+    class="
+      w-[120%]        /* 120% på mobil */
+      sm:w-[140%]     /* 140% fra small screens */
+      md:w-[160%]     /* 160% fra medium screens */
+      lg:w-[100%]     /* 180% fra large screens */
+      max-w-none
+      object-contain
+    "
   />
 </div>
 
-<!-- 3) Tilmeldings-delen _under_ både video og billede -->
-<section class="text-center max-w-[900px] w-full mx-auto -mt-70 px-4 z-20 relative">
+<!-- 3) Tilmeldings-sektionen under -->
+<section class="text-center max-w-[900px] w-full mx-auto -mt-60 px-4">
   <p class="text-xl md:text-2xl font-semibold text-[#B64014]">21,097 KM</p>
   <a href="/tilmelding" class="text-[#B64014] underline block mt-1">Tilmeld dig</a>
-  <img src="/icon.svg" alt="scroll ikon" class="w-6 mx-auto mt-6" />
+  <img src="/icon.svg" alt="scroll ikon" class="w-6 mx-auto mt-4" />
 </section>
+
 
 
 

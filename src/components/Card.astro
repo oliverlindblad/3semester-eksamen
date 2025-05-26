@@ -1,0 +1,18 @@
+---
+const { url="#", cardtitel="", cardtekst="", cardimage="", cardimagealt="" } = Astro.props;
+import Button from "./Button.astro"
+---
+<div class="card bg-orange-50 w-96 shadow-md">
+  <figure>
+    <img
+      src={cardimage}
+      alt={cardimagealt} />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title font-oswald text-xl">{cardtitel}</h2>
+    <p class="justify-center font-instrument text-md">{cardtekst}</p>
+    <div class="card-actions justify-end">
+      
+    </div>
+  </div>
+</div>
