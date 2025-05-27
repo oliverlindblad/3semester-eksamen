@@ -13,6 +13,26 @@ import Banner from '../components/Banner.astro';
 ---
 
 <MainLayout title="FAQ">
+  <section class="relative w-80 md:w-full md:max-w-4xl mx-auto overflow-hidden">
+    <!-- Baggrundsbillede -->
+    <img 
+      src="/billede2-faq-sort_hvid.webp"
+      alt="FAQ baggrund"
+      class="w-full object-cover object-center h-auto"
+    />
+  
+    <!-- Overlay + tekst -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <h1 class="text-orange-700 font-bebas text-6xl sm:text-8xl md:text-[15rem] leading-none drop-shadow-md">
+        FAQ
+      </h1>
+    </div>
+  </section>
+  
+  
+
+
+
   <section class="px-4 py-16 max-w-6xl mx-auto">
     <!-- FØR LØBET -->
     <div class="mb-12">
@@ -225,7 +245,7 @@ import Banner from '../components/Banner.astro';
       </div>
     </div>
     
-    <div class="pt-20 md:pt-30">
+    <div class="pt-35 md:pt-30">
     <Banner/>
     </div>
     
