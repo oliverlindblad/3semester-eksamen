@@ -7,6 +7,7 @@ import Banner from '../components/Banner.astro';
 import { Image } from 'astro:assets';
 import thumbsup from "../assets/images/thumbsup.png";
 import Card from "../components/Card.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <MainLayout title="Rute">
@@ -15,7 +16,7 @@ import Card from "../components/Card.astro";
   class="
     relative 
      w-[90vw] md:w-full max-w-[900px] mx-auto 
-    overflow-hidden 
+    overflow-hidden
 
     /* margin top/bund og padding på mobil/tablet */
     mt-6 mb-6 px-4 
@@ -64,7 +65,7 @@ import Card from "../components/Card.astro";
          md:mt-20   /* medium+ (desktop original) */
          px-4"
 >
-  <p class="text-xl md:text-2xl font-oswald text-[#B64014]">21,097 KM</p>
+  <p class="text-xl md:text-2xl font-oswald text-orange-700">42,195 KM</p>
   <Link
     text="TILMELD"
     href="https://www.sportstiming.dk/event/15085"
@@ -86,23 +87,19 @@ import Card from "../components/Card.astro";
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
     <!-- Venstre: Tekst -->
     <div>
-      <h2 class="text-3xl sm:text-4xl font-bold text-[#B64014] mb-4">STRAVA KORT</h2>
-      <p class="text-base sm:text-lg text-orange-700 leading-relaxed mb-6">
-        Oplev ruten live på Strava – zoom, pan og se både højdemeter og vejvisning.
+      <h2 class="text-3xl sm:text-5xl font-bebas text-orange-700 mb-4">H.C. ANDERSEN MARATHON</h2>
+      <p class="font-oswald sm:text-xl text-orange-700 leading-relaxed mb-6">
+       Løb ruten to gange, så er du i mål!
       </p>
-      <p class="text-sm text-orange-700">
-        Ruten er en 21,097 km rundstrækning gennem Odenses gader. Vi har sørget for masser af musik langs
-        ruten og en masse tilskuere, der er klar til at heppe på dig. Så af sikkerhedsmæssige grunde er det
-        ikke tilladt at løbe med musik i ørerne. Officials og vejvisere vil nemlig gerne kunne komme i
-        kontakt med dig. Så drop musikken og nyd stemningen.<br/><br/>
-        På ruten er der cyklende samaritter. Udgår du af løbet og har brug for transport til målområdet,
-        går du til nærmeste depot, som sørger for din transport til målområdet. Ruten er DAF-IAAF opmålt
-        og godkendt af A.I.M.S.
+      <p class="text-lg text-orange-700 font-instrument">
+ Marathon­ruten på 42,195 km begynder og slutter ved Odense Idrætspark, hvor du sendes af sted i en intens stemning med heppekor og live-musik. De første 21,097 km følger du den samme rundstrækning som halvmarathonet: gennem Odenses brostens­gader med Brandts Klædefabrik og Sankt Knuds Kirke som historiske pejlemærker, videre langs å-stierne i Munke Mose og vestpå gennem Dalums rolige villakvarterer. Forplejningszonerne med High5-energibarer, vand og frugt dukker op ca. hvert 2,5 km, og lokale tilskuere skaber ekstra gejst undervejs.
+
+<br></br>Efter præcis halvvejs-punktet krydser du målstregen på stadion for at fylde depoterne op, før du giver dig i kast med anden omgang. Her mærker du både krop og sind blive sat på prøve, når de velkendte ruter gennem bykerne og ådalen gentages – men med fornyet energi fra publikum og de strategisk placerede drikkestationer. Den afgørende finale foregår på stadionbanen, hvor du fuldender marathonet i et brag af klapsalver og synet af målstregen. Ruten kombinerer Odenses rige kulturarv, naturskønne å-landskaber og et stærkt fællesskab – en ultimativ løbeoplevelse for både erfarne marathonløbere og førstegangs­debutanter.
       </p>
     </div>
 
     <!-- Højre: Strava Embed -->
-    <div class="w-full aspect-w-16 aspect-h-9 rounded-xl shadow-md overflow-hidden">
+    <div class="w-full aspect-w-16 aspect-h-9 shadow-md overflow-hidden">
       <div
         class="strava-embed-placeholder w-full h-full"
         data-embed-type="route"
@@ -112,6 +109,8 @@ import Card from "../components/Card.astro";
         data-hide-profile="true"
         data-hide-stats="true"
         data-from-embed="true"
+        data-distance="21097"
+      
       ></div>
     </div>
   </div>
@@ -146,7 +145,7 @@ import Card from "../components/Card.astro";
           cardimage="public/billede18.webp"
           cardimagealt="high-5"
           cardtitel="High-5 energi på ruten"
-          cardtekst="Det er vores sponsor, High5, der leverer energien i forplejningszonerne. Der er vand og High5-energidrik i alle forplejningszoner."
+          cardtekst="High-5 energi-stationerne står ca hver 2,5 km og byder på elektrolyt-rig energidrik og frisk kildevand, så du kan holde væskebalancen og energien oppe."
         />
       </div>
 
@@ -164,7 +163,7 @@ import Card from "../components/Card.astro";
           cardimage="public/billede7.webp"
           cardimagealt="forplejningszoner"
           cardtitel="Forplejningszoner"
-          cardtekst="Forplejningszonerne i HCA Marathon byder på vand, energidrik og snacks. De er jævnt fordelt langs ruten og bemandet af frivillige."
+          cardtekst="Forplejningszonerne er placeret ca. hver 5 km angs ruten og byder på kildevand, energidrik og lette snacks som frugt og banan. Bemandet af frivillige sikrer de at løberne er tanket op."
         />
       </div>
     </div>
@@ -263,34 +262,13 @@ import Card from "../components/Card.astro";
   </div>
 </section>
 
+<div class="pt-20 md:pt-30">
+    <Banner/>
+    </div>
 
-
-
-
-
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const section = document.getElementById("awards");
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Tilføj synlig‐klasser – vi beholder
-            // opacity-0/translate-y-8, men de kommer _efter_ i
-            // class-list og overskriver dem
-            section.classList.add("opacity-100", "translate-y-0");
-            obs.unobserve(section);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(section);
-  });
-</script>
+    <div class="pt-20 md:pt-30">
+ <Footer />
+ </div>
 
 
 </MainLayout>
