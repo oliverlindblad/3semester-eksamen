@@ -14,9 +14,19 @@ import Card from '../components/Card.astro';
 
 
 <MainLayout title="Titel">
-	<!-- 1) Video-sektionen alene -->
-<section
-  class="relative max-w-[900px] w-full h-[600px] mx-auto overflow-hidden mt-2"
+  <!-- START HERO SECTION -->
+  <section>
+  <section
+  class="
+    relative 
+     w-[90vw] md:w-full max-w-[900px] mx-auto 
+    overflow-hidden 
+
+    /* margin top/bund og padding på mobil/tablet */
+    mt-6 mb-6 px-4 
+    sm:mt-8 sm:mb-8 sm:px-5 
+    md:mt-2 md:mb-2 md:px-0 
+  "
   style="aspect-ratio:16/9;"
 >
   <video
@@ -31,39 +41,103 @@ import Card from '../components/Card.astro';
 
 <!-- 2) Overskrifts-billedet UDENFOR videoen -->
 <div
-  class="relative w-full flex justify-center pointer-events-none
-         -mt-[500px]  /* trækker billedet op over videoen */
-         z-10"
+  class="relative w-full flex justify-center pointer-events-none z-10
+         -mt-[200px]   /* mobil: mindre overlap */
+         sm:-mt-[350px] /* small screens */
+         md:-mt-[450px] /* medium+ (desktop original) */
+  "
 >
   <img
-    src="public/hca-marathon-endelig-version.png"
+    src="/hca-marathon-endelig-version.png"
     alt="Udforsk ruten"
     class="
-      w-[120%]        /* 120% på mobil */
-      sm:w-[140%]     /* 140% fra small screens */
-      md:w-[160%]     /* 160% fra medium screens */
-      lg:w-[100%]     /* 180% fra large screens */
+      w-[100%]        /* mobil: fyld boksen */
+      sm:w-[120%]     /* small screens */
+      md:w-[140%]     /* medium screens */
+      lg:w-[160%]     /* large screens (desktop original) */
       max-w-250
       object-contain
     "
   />
 </div>
-
-<!-- 3) Tilmeldings-sektionen under -->
-<section class="text-center max-w-[900px] w-full mx-auto mt-30 px-4">
-  <p class="text-xl md:text-2xl font-semibold text-[#B64014]">21,097 KM</p>
-  <a href="/tilmelding" class="text-[#B64014] underline block mt-1">Tilmeld dig</a>
-  
-</section>
 	
-							
+</section>
+<!-- SLUT HERO SECTION -->
+
+<!-- START CARUSEL SECTION -->
+<section 
+  x-data="{
+    activeIndex: 0,
+    items: [
+      { img: '/billede3.webp', title: 'LØB DE SIDSTE 10' },
+      { img: '/billede5.webp', title: 'HCA MARATHON' },
+      { img: '/billede4.webp', title: 'DM MARATHON' },
+      { img: '/billede2.webp', title: 'HALV MARATHON' }
+    ]
+  }"
+  class="relative max-w-6xl mx-auto px-4 pt-20"
+>
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="font-bebas text-3xl md:text-5xl text-orange-700">
+      TILMELDINGSMULIGHEDER
+    </h2>
+    <div class="flex items-center gap-2">
+      <button 
+        @click="activeIndex = (activeIndex - 1 + items.length) % items.length"
+        class="text-black hover:text-orange-700 text-xl"
+      >
+        ←
+      </button>
+      <button 
+        @click="activeIndex = (activeIndex + 1) % items.length"
+        class="text-black hover:text-orange-700 text-xl"
+      >
+        →
+      </button>
+    </div>
+  </div>
+
+  <!-- Carousel track -->
+  <div class="overflow-hidden relative">
+    <div 
+      class="flex transition-transform duration-500"
+      :style="`transform: translateX(-${activeIndex * 100}%); width: ${items.length * 100}%`"
+    >
+      <template x-for="(item, index) in items" :key="index">
+        <div class="w-full flex-shrink-0 px-4 text-center">
+          <div class="group">
+            <img 
+              :src="item.img"
+              :alt="item.title"
+              class="mx-auto h-56 sm:h-64 md:h-72 object-cover transition duration-300 group-hover:grayscale-0 grayscale"
+            />
+            <div 
+              class="mt-2 font-bebas text-orange-700 text-xl relative"
+              :class="{ 'underline underline-offset-4 decoration-2': index === activeIndex }"
+              x-text="item.title"
+            ></div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="relative mt-4 h-1 bg-neutral-300">
+    <div 
+      class="absolute top-0 left-0 h-full bg-orange-700 transition-all duration-300"
+      :style="`width: ${(100 / items.length) * (activeIndex + 1)}%`"
+    ></div>
+  </div>
+</section>
+
+
+ <!-- SLUT CARUSEL SECTION -->
 
 
 
 
-<Countdown targetDate="2025-08-04T09:30:00" />
-
-<Banner/>
 
 <Card
 
