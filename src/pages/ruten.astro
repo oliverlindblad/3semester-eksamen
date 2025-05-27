@@ -64,7 +64,7 @@ import Card from "../components/Card.astro";
          md:mt-20   /* medium+ (desktop original) */
          px-4"
 >
-  <p class="text-xl md:text-2xl font-semibold text-[#B64014]">21,097 KM</p>
+  <p class="text-xl md:text-2xl font-oswald text-[#B64014]">21,097 KM</p>
   <Link
     text="TILMELD"
     href="https://www.sportstiming.dk/event/15085"
@@ -128,98 +128,45 @@ import Card from "../components/Card.astro";
 </section>
 
 
-<!-- Zonetyper med grid -->
-<section class=" py-20 px-6">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-    <Card
+<section class="py-24 mt-30 px-6 sm:px-20">
+  <!-- Container sørger for max-bredde + centrerer horisontalt -->
+  <div class="container mx-auto">
+    <!-- Grid med 1|2|3 kolonner og auto-center -->
+    <div
+    class="
+      grid
+      grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+      gap-10 sm:gap-8 lg:gap-10
+      justify-items-center
+      mx-auto
+    "
+  >
+      <div class="w-full max-w-sm mb-8 sm:mb-0">
+        <Card
+          cardimage="public/billede18.webp"
+          cardimagealt="high-5"
+          cardtitel="High-5 energi på ruten"
+          cardtekst="Det er vores sponsor, High5, der leverer energien i forplejningszonerne. Der er vand og High5-energidrik i alle forplejningszoner."
+        />
+      </div>
 
-cardimage="public/billede18.webp"
-cardimagealt="high-5"
-cardtitel="High-5 energi på ruten"
-cardtekst="Det er vores sponsor, High5, der leverer energien i forplejningszonerne. Der er vand og High5-energidrik i alle forplejningszoner."
-></Card>
-    <Card
+      <div class="w-full max-w-sm mb-8 sm:mb-0">
+        <Card
+          cardimage="public/Media.png"
+          cardimagealt="stemningszoner"
+          cardtitel="Stemningszoner"
+          cardtekst="Stemningszonerne under HCA Marathon skaber fest og energi langs ruten med musik, heppere og underholdning, der motiverer løberne og engagerer publikum."
+        />
+      </div>
 
-cardimage="public/Media.png"
-cardimagealt="stemningszoner"
-cardtitel="Stemningszoner"
-cardtekst="Stemningszonerne under HCA Marathon skaber fest og energi langs ruten med musik, heppere og underholdning, der motiverer løberne og engagerer publikum."
-></Card>
-   
-<Card
-
-cardimage="public/billede7.webp"
-cardimagealt="forplejningszoner"
-cardtitel="Forplejningszoner"
-cardtekst="Forplejningszonerne i HCA Marathon byder på vand, energidrik og snacks. De er jævnt fordelt langs ruten og bemandet af frivillige."
-></Card>
-  </div>
-</section>
-
-
-<section class="bg-white py-20 px-6">
-  <div class="max-w-6xl mx-auto
-              grid grid-cols-1 gap-8
-              md:grid-cols-[auto,1fr]
-              md:items-start">
-    <!-- Venstre kolonne: Titel -->
-    <h2 class="text-orange-700 text-3xl font-bold md:pr-8">
-      FORPLEJNINGSZONER
-    </h2>
-
-    <!-- Højre kolonne: Tabel -->
-    <div class="overflow-x-auto">
-      <table class="w-full table-auto border-separate border-spacing-y-4">
-        <thead>
-          <tr class="text-orange-700 font-semibold text-base sm:text-lg">
-            <th class="px-2 sm:px-4 py-1 text-left">Placering</th>
-            <th class="px-2 sm:px-4 py-1 text-left">Vejside</th>
-            <th class="px-2 sm:px-4 py-1 text-left">Forplejning</th>
-          </tr>
-        </thead>
-        <tbody class="text-orange-700 text-sm sm:text-md">
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">2,5 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
-          </tr>
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">5 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik og kildevand</td>
-          </tr>
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">7,5 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
-          </tr>
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">10 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik og kildevand</td>
-          </tr>
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">12,5 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
-          </tr>
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">15 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik, kildevand og banan</td>
-          </tr>
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">17,5 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
-          </tr>
-          <tr class="border-t border-neutral-300">
-            <td class="px-2 sm:px-4 py-2">20 KM</td>
-            <td class="px-2 sm:px-4 py-2">Højre</td>
-            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik, kildevand og banan</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="w-full max-w-sm mb-8 sm:mb-0">
+        <Card
+          cardimage="public/billede7.webp"
+          cardimagealt="forplejningszoner"
+          cardtitel="Forplejningszoner"
+          cardtekst="Forplejningszonerne i HCA Marathon byder på vand, energidrik og snacks. De er jævnt fordelt langs ruten og bemandet af frivillige."
+        />
+      </div>
     </div>
   </div>
 </section>
@@ -227,33 +174,127 @@ cardtekst="Forplejningszonerne i HCA Marathon byder på vand, energidrik og snac
 
 
 
-  
-              <ul class="mt-10 sm:mt-35 text-sm font-instrument w-full divide-y divide-black border-t border-b border-black">
-                <li class="flex justify-between py-2 text-orange-700 font-bold">
-                  <span>2,5 KM</span>
-                  <span>HØJRE</span>
-                  <span class="text-orange-700 font-normal">High5 energidrik og kildevand</span>
-                </li>
-                <li class="flex justify-between py-2 text-orange-700 font-bold">
-                   <span>5 KM</span>
-                  <span>HØJRE</span>
-                  <span class="text-orange-700 font-normal">Egen forplejning, High5 energidrik og kildevand</span>
-                </li>
-                <li class="flex justify-between py-2 text-orange-700 font-bold">
-                  <span>DATO</span>
-                  <span class="text-orange-700 font-normal">28. september 2025</span>
-                </li>
-                <li class="flex justify-between py-2 text-orange-700 font-bold">
-                  <span>TIDSPUNKT</span>
-                  <span class="text-orange-700 font-normal">KL. 10:00</span>
-                </li>
-                <li class="flex justify-between py-2 text-orange-700 font-bold">
-                  <span>START</span>
-                  <span class="text-orange-700 font-normal">Israels Plads 3 5200 Odense V</span>
-                </li>
-              </ul>
+<section id="forplejningszoner" class="bg-white py-16 px-4 mt-30">
+  <div class="max-w-6xl mx-auto">
+    <!-- Desktop grid: overskrift i venstre, tabel i højre -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- 1) Venstre kolonne: overskrift -->
+      <h4 class="text-4xl font-Bebas text-orange-700 md:col-span-1">
+        Forplejningszoner
+      </h4>
+
+      <!-- 2) Højre kolonne: tabel, fylder 2 kolonner på md+ -->
+      <div class="md:col-span-2 overflow-x-auto">
+        <table class="table-fixed w-full border-collapse">
+          <!-- Sætter kolonnebredden så VEJSIDE-kolonnen er centreret -->
+          <colgroup>
+            <col class="w-1/4">
+            <col class="w-1/2">
+            <col class="w-1/4">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="pb-4 text-sm md:text-xl font-oswald text-orange-700 text-left">PLACERING</th>
+              <th class="pb-4 text-sm md:text-xl font-oswald text-orange-700 text-center">VEJSIDE</th>
+              <th class="pb-4 text-sm md:text-xl font-oswald text-orange-700 text-right">FORPLEJNING</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-300">
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">2,5 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                High5 energidrik og kildevand
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">5 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                Egen forplejning, High5 energidrik og kildevand
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">7,5 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                High5 energidrik og kildevand
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">10 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                Egen forplejning, High5 energidrik og kildevand
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">12,5 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                High5 energidrik og kildevand
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">15 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                Egen forplejning, High5 energidrik, kildevand og banan
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">17,5 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                High5 energidrik og kildevand
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-left">20 KM</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-center">Højre</td>
+              <td class="py-4 text-base md:text-lg font-instrument text-orange-700 text-right">
+                Egen forplejning, High5 energidrik, kildevand og banan
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>
 
+
+
+
+
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.getElementById("awards");
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Tilføj synlig‐klasser – vi beholder
+            // opacity-0/translate-y-8, men de kommer _efter_ i
+            // class-list og overskriver dem
+            section.classList.add("opacity-100", "translate-y-0");
+            obs.unobserve(section);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
+  });
+</script>
+
+
 </MainLayout>
+
+
 
  
