@@ -8,82 +8,227 @@ import thumbsup from "../assets/images/thumbsup.png";
 import HorizontalAccordion from "../components/HorizontalAccordion.astro";
 import Accordion from "../components/Accordion.astro";
 import Countdown from '../components/Countdown.astro';
----
+import Banner from '../components/Banner.astro';
 
+---
 
 <MainLayout title="FAQ">
   <section class="px-4 py-16 max-w-6xl mx-auto">
-    {[
-      { title: "FØR LØBET" },
-      { title: "UNDER LØBET" },
-      { title: "EFTER LØBET" },
-    ].map(({ title }) => (
-      <div class="mb-12">
-        {/* Sektionstitel */}
-        <h2 class="font-bebas text-3xl text-orange-700 text-center mb-6">
-          {title}
-        </h2>
-
-        {/* Grid: 1 kolonne på mobil, 2 på md+ */}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* 2 kolonner med hver 3 spørgsmål */}
-          {[0, 1].map(() => (
-            <div class="flex flex-col space-y-4">
-              <Accordion
-                overskrift="HCA Marathon"
-                tekst="Her kan du læse om HCA Marathon-flowet før, under og efter løbet."
-              />
-              <Accordion
-                overskrift="Startnummer"
-                tekst="Sådan modtager og bruger du dit startnummer."
-              />
-              <Accordion
-                overskrift="Ændring i din tilmelding"
-                tekst="Du kan rette afstand, tilmeldingstype eller deltagerinfo indtil deadline."
-              />
-            </div>
-          ))}
+    <!-- FØR LØBET -->
+    <div class="mb-12">
+      <h2 class="font-oswald text-3xl md:text-5xl text-orange-700 text-center mb-6">
+        FØR LØBET
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+        <div class="flex flex-col space-y-4">
+          <Accordion
+            overskrift="HCA Marathon"
+            tekst="Her kan du læse alt om at forberede dig til HCA Marathon…"
+          />
+          <Accordion
+            overskrift="Startnummer"
+            tekst="Dit startnummer modtager du pr. e-mail senest 14 dage før løbet."
+          />
+          <Accordion
+            overskrift="Ændring i din tilmelding"
+            tekst="Du kan ændre din tilmelding indtil d. 1. august via din profil."
+          />
+        </div>
+        <div class="flex flex-col space-y-4">
+          <Accordion
+            overskrift="Klargøring"
+            tekst="Husk at tjekke vejrudsigten og pak løbetøj efter forholdene."
+          />
+          <Accordion
+            overskrift="Parkering"
+            tekst="Der er gratis parkering ved Israels Plads – se kortet her."
+          />
+          <Accordion
+            overskrift="Bus & tog"
+            tekst="Brug bybus 34 eller S-tog til Odense Banegård, derefter 10 min. gang."
+          />
         </div>
       </div>
-    ))}
+    </div>
 
-    {/* Kontakt os */}
-    <div class="border-t border-gray-300 pt-12">
-      <h2 class="font-bebas text-3xl text-orange-700 mb-6">KONTAKT OS</h2>
-      <form class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Venstre kolonne: navn, email, besked */}
+    <!-- UNDER LØBET -->
+    <div class="mb-12">
+      <h2 class="font-oswald text-3xl md:text-5xl text-orange-700 text-center mb-6">
+        UNDER LØBET
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
         <div class="flex flex-col space-y-4">
-          <input type="text" placeholder="Navn" class="border-b border-gray-400 pb-2 focus:outline-none" />
-          <input type="email" placeholder="Email" class="border-b border-gray-400 pb-2 focus:outline-none" />
-          <textarea rows="3" placeholder="Hvordan kan vi hjælpe dig?" class="border-b border-gray-400 pb-2 focus:outline-none"></textarea>
+          <Accordion
+            overskrift="Servicezoner"
+            tekst="Der er forplejning hver 5 km på ruten – se kortet her…"
+          />
+          <Accordion
+            overskrift="Ruteafmærkning"
+            tekst="Følg de orange pil og vejvisere langs hele maratonruten."
+          />
+          <Accordion
+            overskrift="Sikkerhed"
+            tekst="Løb altid til højre på vejen og følg politiets anvisninger."
+          />
         </div>
-        {/* Højre kolonne: email-genbrug, filupload */}
         <div class="flex flex-col space-y-4">
-          <input type="email" placeholder="Din email igen" class="border-b border-gray-400 pb-2 focus:outline-none" />
-          <label class="flex items-center border-dashed border-2 border-gray-400 p-4 cursor-pointer">
-            <span>Upload fil (valgfrit)</span>
+          <Accordion
+            overskrift="Toiletter"
+            tekst="Der er mobile toiletter ved start/mål og hver 7 km."
+          />
+          <Accordion
+            overskrift="Førstehjælp"
+            tekst="Ambulancer og førstehjælpsstationer ved km 5 og 15."
+          />
+          <Accordion
+            overskrift="Live tracking"
+            tekst="Del linket med familie og venner, så de kan følge dig."
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- EFTER LØBET -->
+    <div class="mb-12">
+      <h2 class="font-oswald text-3xl md:text-5xl text-orange-700 text-center mb-6">
+        EFTER LØBET
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+        <div class="flex flex-col space-y-4">
+          <Accordion
+            overskrift="Præmieuddeling"
+            tekst="På torvet midt i byen kl. 15:00 kårer vi vinderne."
+          />
+          <Accordion
+            overskrift="Medalje"
+            tekst="Alle gennemførende får en eksklusiv HCA-medalje."
+          />
+          <Accordion
+            overskrift="Resultatliste"
+            tekst="Se den fulde resultatliste på sportstiming.dk."
+          />
+        </div>
+        <div class="flex flex-col space-y-4">
+          <Accordion
+            overskrift="Forfriskninger"
+            tekst="Frugt, vand og energidrikke til alle deltagere i målområdet."
+          />
+          <Accordion
+            overskrift="Massage"
+            tekst="Gratis massage fra Fysioterapeuterne v. målområdet."
+          />
+          <Accordion
+            overskrift="Transport"
+            tekst="Shuttlebiler kører til banegården hver halve time."
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- KONTAKT OS -->
+    <div class="pt-20">
+      <h2 class="font-bebas text-8xl text-orange-700">KONTAKT OS</h2>
+      <p class="font-instrument text-lg text-black mb-6">
+        Fik du ikke svar på dit spørgsmål i FAQ’en, så tøv ikke med at kontakte os!<br>
+        Vi bestræber os på at besvare din henvendelse så hurtigt vi kan.
+      </p>
+    
+      <form class="grid grid-cols-1 lg:grid-cols-2 gap-4  font-instrument pb-6 mb-8">
+        <!-- Venstre kolonne -->
+        <div class="flex flex-col space-y-4 text-black">
+          <input
+            type="text"
+            placeholder="Navn"
+            class="border-b border-neutral-400 pb-2 
+                   focus:outline-none focus:border-orange-700 focus:ring-0"
+          />
+          <input
+            type="text"
+            placeholder="Emne"
+            class="border-b border-neutral-400 pb-2 
+                   focus:outline-none focus:border-orange-700 focus:ring-0"
+          />
+          <textarea
+            rows="3"
+            placeholder="Hvordan kan vi hjælpe dig?"
+            class="border-b border-neutral-400 pb-2 resize-none
+                   focus:outline-none focus:border-orange-700 focus:ring-0"
+          ></textarea>
+        </div>
+    
+        <!-- Højre kolonne -->
+        <div class="flex flex-col space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            class="border-b border-neutral-400 pb-2 
+                   focus:outline-none focus:border-orange-700 focus:ring-0"
+          />
+          <!-- Upload-label centreret -->
+          <label
+            class="flex items-center justify-center border-dashed border-2 border-neutral-400 p-15 cursor-pointer"
+          >
+            <span class="font-instrument text-base text-neutral-500">UPLOAD FILER (valgfrit)</span>
             <input type="file" class="hidden" />
           </label>
         </div>
-        {/* Send-knap */}
-        <button type="submit" class="col-span-full bg-orange-700 text-white py-3 font-bold rounded mt-4 hover:bg-orange-600">
-          SEND
-        </button>
+    
+        <!-- Centreret send-knap -->
+        <div class="col-span-full flex justify-center">
+          <Button text="SEND" />
+        </div>
       </form>
     </div>
+    
+    
 
-    {/* Subscribe */}
-    <div class="mt-16 text-center">
-      <h2 class="font-bebas text-3xl text-orange-700 mb-4">
-        SUBSCRIBE <span class="font-normal">for at modtage eksklusive</span> NYHEDER
+    <!-- SUBSCRIBE -->
+    <div class="mt-16 px-4 pt-20">
+      <!-- Overskrift -->
+      <h2 class="font-bebas text-3xl md:text-6xl text-orange-700 mb-4 text-center md:text-right">
+        SUBSCRIBE 
+        <span class="font-bebas text-black text-xl md:text-2xl">for at</span>  
+        modtage 
+        <span class="font-bebas text-black text-xl md:text-2xl">eksklusive</span>
       </h2>
-      <div class="flex justify-center items-center gap-2">
-        <input type="email" placeholder="email@example.com" class="border-b border-gray-400 pb-2 w-64 focus:outline-none" />
-        <button class="bg-orange-700 text-white px-6 py-2 font-bold rounded hover:bg-orange-600">
-          SEND
-        </button>
+    
+      <!-- Input, button og "NYHEDER" i én række også på mobil -->
+      <div class="flex flex-row flex-wrap items-center justify-center gap-2 md:justify-end">
+        <input
+          type="email"
+          placeholder="email@example.com"
+          class="border-b font-instrument text-black border-neutral-400 
+                 w-27 sm:w-56 md:w-60
+                 focus:outline-none focus:border-orange-700 focus:ring-0
+                 text-sm sm:text-base md:text-xl py-1"
+        />
+    
+        <Button text="SUBSCRIBE" />
+    
+        <span class="font-bebas text-3xl sm:text-2xl md:text-6xl">NYHEDER</span>
+      </div>
+    
+      <!-- Checkbox under -->
+      <div class="mt-4 flex justify-start pl-2 md:justify-center md:pl-70">
+        <fieldset class="font-instrument">
+          <label class="flex items-center space-x-2 text-neutral-400 text-xs">
+            <input
+              type="checkbox"
+              checked
+              class="appearance-none w-4 h-4 border border-neutral-400 bg-white 
+                     checked:bg-orange-700 
+                     focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-0"
+            />
+            <span>Jeg samtykker til at modtage markedsføring via e-mail</span>
+          </label>
+        </fieldset>
       </div>
     </div>
+    
+    <div class="pt-20 md:pt-30">
+    <Banner/>
+    </div>
+    
   </section>
 
   <Footer />
