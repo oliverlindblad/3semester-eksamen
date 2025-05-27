@@ -6,12 +6,22 @@ import Countdown from '../components/Countdown.astro';
 import Banner from '../components/Banner.astro';
 import { Image } from 'astro:assets';
 import thumbsup from "../assets/images/thumbsup.png";
+import Card from "../components/Card.astro";
 ---
 
 <MainLayout title="Rute">
-<!-- 1) Video-sektionen alene -->
+<!-- 1) Video-sektionen alene (uændret) -->
 <section
-  class="relative max-w-[900px] w-full h-auto mx-auto overflow-hidden mt-2"
+  class="
+    relative 
+     w-[90vw] md:w-full max-w-[900px] mx-auto 
+    overflow-hidden 
+
+    /* margin top/bund og padding på mobil/tablet */
+    mt-6 mb-6 px-4 
+    sm:mt-8 sm:mb-8 sm:px-5 
+    md:mt-2 md:mb-2 md:px-0 
+  "
   style="aspect-ratio:16/9;"
 >
   <video
@@ -26,18 +36,20 @@ import thumbsup from "../assets/images/thumbsup.png";
 
 <!-- 2) Overskrifts-billedet UDENFOR videoen -->
 <div
-  class="relative w-full flex justify-center pointer-events-none
-         -mt-[450px]  /* trækker billedet op over videoen */
-         z-10"
+  class="relative w-full flex justify-center pointer-events-none z-10
+         -mt-[200px]   /* mobil: mindre overlap */
+         sm:-mt-[350px] /* small screens */
+         md:-mt-[450px] /* medium+ (desktop original) */
+  "
 >
   <img
     src="public/udforsk-ruten-endelig-version.png"
     alt="Udforsk ruten"
     class="
-      w-[120%]        /* 120% på mobil */
-      sm:w-[140%]     /* 140% fra small screens */
-      md:w-[160%]     /* 160% fra medium screens */
-      lg:w-[100%]     /* 180% fra large screens */
+      w-[100%]        /* mobil: fyld boksen */
+      sm:w-[120%]     /* small screens */
+      md:w-[140%]     /* medium screens */
+      lg:w-[160%]     /* large screens (desktop original) */
       max-w-250
       object-contain
     "
@@ -45,10 +57,19 @@ import thumbsup from "../assets/images/thumbsup.png";
 </div>
 
 <!-- 3) Tilmeldings-sektionen under -->
-<section class="text-center max-w-[900px] w-full mx-auto mt-20 px-4">
+<section
+  class="text-center max-w-[900px] w-full mx-auto
+         mt-10       /* mobil: tættere */
+         sm:mt-20   /* small screens */
+         md:mt-20   /* medium+ (desktop original) */
+         px-4"
+>
   <p class="text-xl md:text-2xl font-semibold text-[#B64014]">21,097 KM</p>
-  <a href="/tilmelding" class="text-[#B64014] underline block mt-1">Tilmeld dig</a>
-  
+  <Link
+    text="TILMELD"
+    href="https://www.sportstiming.dk/event/15085"
+    class="mt-2 inline-block text-[#B64014] underline"
+  />
 </section>
 
 
@@ -60,69 +81,179 @@ import thumbsup from "../assets/images/thumbsup.png";
 
 
 
-  <!-- Strava kort og beskrivelse -->
-  <section class="bg-white py-20 px-6 mt-30">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-      <div>
-        <h2 class="text-4xl font-bold text-[#B64014] mb-6">STRAVA KORT</h2>
-        <p class="text-neutral-700 text-lg leading-relaxed">
-          Ruten er en 21,097 km rundstrækning gennem Odenses gader. Vi har sørget for masser af musik...
-        </p>
-        <p class="mt-6 text-neutral-700 text-lg leading-relaxed">
-          På ruten er der cyklende samaritter. Udgår du af løbet...
-        </p>
-      </div>
-      <img src="/images/stravakort.png" alt="Strava kort" class="rounded-xl shadow-md" />
-    </div>
-  </section>
 
-  <!-- Zonetyper -->
-  <section class="bg-[#f9f4eb] py-20 px-6">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
-      <div class="bg-white rounded-xl overflow-hidden shadow">
-        <img src="/images/forplejning.jpg" class="w-full h-56 object-cover" />
-        <div class="p-6">
-          <h3 class="text-[#B64014] text-2xl font-semibold mb-2">Forplejningszoner</h3>
-          <p class="text-neutral-800 text-sm">Forplejningszonerne i HCA Marathon byder på...</p>
-        </div>
-      </div>
-      <div class="bg-white rounded-xl overflow-hidden shadow">
-        <img src="/images/stemning.jpg" class="w-full h-56 object-cover" />
-        <div class="p-6">
-          <h3 class="text-[#B64014] text-2xl font-semibold mb-2">Stemningszoner</h3>
-          <p class="text-neutral-800 text-sm">Stemningszonerne under HCA Marathon skaber fest...</p>
-        </div>
-      </div>
-      <div class="bg-white rounded-xl overflow-hidden shadow">
-        <img src="/images/high5.jpg" class="w-full h-56 object-cover" />
-        <div class="p-6">
-          <h3 class="text-[#B64014] text-2xl font-semibold mb-2">High5-energi på ruten</h3>
-          <p class="text-neutral-800 text-sm">Det er vores sponsor, High5, der leverer energien...</p>
-        </div>
-      </div>
+<section class="bg-white py-20 px-6 mt-30">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <!-- Venstre: Tekst -->
+    <div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-[#B64014] mb-4">STRAVA KORT</h2>
+      <p class="text-base sm:text-lg text-orange-700 leading-relaxed mb-6">
+        Oplev ruten live på Strava – zoom, pan og se både højdemeter og vejvisning.
+      </p>
+      <p class="text-sm text-orange-700">
+        Ruten er en 21,097 km rundstrækning gennem Odenses gader. Vi har sørget for masser af musik langs
+        ruten og en masse tilskuere, der er klar til at heppe på dig. Så af sikkerhedsmæssige grunde er det
+        ikke tilladt at løbe med musik i ørerne. Officials og vejvisere vil nemlig gerne kunne komme i
+        kontakt med dig. Så drop musikken og nyd stemningen.<br/><br/>
+        På ruten er der cyklende samaritter. Udgår du af løbet og har brug for transport til målområdet,
+        går du til nærmeste depot, som sørger for din transport til målområdet. Ruten er DAF-IAAF opmålt
+        og godkendt af A.I.M.S.
+      </p>
     </div>
-  </section>
 
-  <!-- Forplejningszone-tabel -->
-  <section class="bg-white py-20 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-[#B64014] text-3xl font-bold mb-8">FORPLEJINGSZONER</h2>
-      <table class="w-full text-left border-separate border-spacing-y-4">
-        <thead class="text-[#B64014] font-semibold text-lg">
-          <tr>
-            <th>Placering</th>
-            <th>Vejside</th>
-            <th>Forplejning</th>
+    <!-- Højre: Strava Embed -->
+    <div class="w-full aspect-w-16 aspect-h-9 rounded-xl shadow-md overflow-hidden">
+      <div
+        class="strava-embed-placeholder w-full h-full"
+        data-embed-type="route"
+        data-embed-id="3357655891844265504"
+        data-style="standard"
+        data-map-hash="11.38/55.4022/10.3721"
+        data-hide-profile="true"
+        data-hide-stats="true"
+        data-from-embed="true"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Script skal ligge efter placeholderen -->
+  <script src="https://strava-embeds.com/embed.js" defer></script>
+  <style>
+    /* Skjul profil‐området */
+    .strava-embed-placeholder header,
+    .strava-embed-placeholder .strava-embed-profile {
+      display: none !important;
+    }
+  </style>
+</section>
+
+
+<!-- Zonetyper med grid -->
+<section class=" py-20 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+    <Card
+
+cardimage="public/billede18.webp"
+cardimagealt="high-5"
+cardtitel="High-5 energi på ruten"
+cardtekst="Det er vores sponsor, High5, der leverer energien i forplejningszonerne. Der er vand og High5-energidrik i alle forplejningszoner."
+></Card>
+    <Card
+
+cardimage="public/Media.png"
+cardimagealt="stemningszoner"
+cardtitel="Stemningszoner"
+cardtekst="Stemningszonerne under HCA Marathon skaber fest og energi langs ruten med musik, heppere og underholdning, der motiverer løberne og engagerer publikum."
+></Card>
+   
+<Card
+
+cardimage="public/billede7.webp"
+cardimagealt="forplejningszoner"
+cardtitel="Forplejningszoner"
+cardtekst="Forplejningszonerne i HCA Marathon byder på vand, energidrik og snacks. De er jævnt fordelt langs ruten og bemandet af frivillige."
+></Card>
+  </div>
+</section>
+
+
+<section class="bg-white py-20 px-6">
+  <div class="max-w-6xl mx-auto
+              grid grid-cols-1 gap-8
+              md:grid-cols-[auto,1fr]
+              md:items-start">
+    <!-- Venstre kolonne: Titel -->
+    <h2 class="text-orange-700 text-3xl font-bold md:pr-8">
+      FORPLEJNINGSZONER
+    </h2>
+
+    <!-- Højre kolonne: Tabel -->
+    <div class="overflow-x-auto">
+      <table class="w-full table-auto border-separate border-spacing-y-4">
+        <thead>
+          <tr class="text-orange-700 font-semibold text-base sm:text-lg">
+            <th class="px-2 sm:px-4 py-1 text-left">Placering</th>
+            <th class="px-2 sm:px-4 py-1 text-left">Vejside</th>
+            <th class="px-2 sm:px-4 py-1 text-left">Forplejning</th>
           </tr>
         </thead>
-        <tbody class="text-[#B64014] text-md">
-          <tr><td>2,5 KM</td><td>Højre</td><td>High5 energidrik og kildevand</td></tr>
-          <tr><td>5 KM</td><td>Højre</td><td>Egen forplejning, High5 energidrik og kildevand</td></tr>
-          <tr><td>7,5 KM</td><td>Højre</td><td>High5 energidrik og kildevand</td></tr>
-          <tr><td>10 KM</td><td>Højre</td><td>Egen forplejning, High5 energidrik og kildevand</td></tr>
-          <tr><td>12,5 KM</td><td>Højre</td><td>High5 energidrik og kildevand</td></tr>
+        <tbody class="text-orange-700 text-sm sm:text-md">
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">2,5 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
+          </tr>
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">5 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik og kildevand</td>
+          </tr>
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">7,5 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
+          </tr>
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">10 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik og kildevand</td>
+          </tr>
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">12,5 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
+          </tr>
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">15 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik, kildevand og banan</td>
+          </tr>
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">17,5 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">High5 energidrik og kildevand</td>
+          </tr>
+          <tr class="border-t border-neutral-300">
+            <td class="px-2 sm:px-4 py-2">20 KM</td>
+            <td class="px-2 sm:px-4 py-2">Højre</td>
+            <td class="px-2 sm:px-4 py-2">Egen forplejning, High5 energidrik, kildevand og banan</td>
+          </tr>
         </tbody>
       </table>
     </div>
-  </section>
+  </div>
+</section>
+
+
+
+
+  
+              <ul class="mt-10 sm:mt-35 text-sm font-instrument w-full divide-y divide-black border-t border-b border-black">
+                <li class="flex justify-between py-2 text-orange-700 font-bold">
+                  <span>2,5 KM</span>
+                  <span>HØJRE</span>
+                  <span class="text-orange-700 font-normal">High5 energidrik og kildevand</span>
+                </li>
+                <li class="flex justify-between py-2 text-orange-700 font-bold">
+                   <span>5 KM</span>
+                  <span>HØJRE</span>
+                  <span class="text-orange-700 font-normal">Egen forplejning, High5 energidrik og kildevand</span>
+                </li>
+                <li class="flex justify-between py-2 text-orange-700 font-bold">
+                  <span>DATO</span>
+                  <span class="text-orange-700 font-normal">28. september 2025</span>
+                </li>
+                <li class="flex justify-between py-2 text-orange-700 font-bold">
+                  <span>TIDSPUNKT</span>
+                  <span class="text-orange-700 font-normal">KL. 10:00</span>
+                </li>
+                <li class="flex justify-between py-2 text-orange-700 font-bold">
+                  <span>START</span>
+                  <span class="text-orange-700 font-normal">Israels Plads 3 5200 Odense V</span>
+                </li>
+              </ul>
+</section>
+
 </MainLayout>
+
+ 

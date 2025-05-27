@@ -32,7 +32,7 @@ import Card from '../components/Card.astro';
 <!-- 2) Overskrifts-billedet UDENFOR videoen -->
 <div
   class="relative w-full flex justify-center pointer-events-none
-         -mt-[550px]  /* trækker billedet op over videoen */
+         -mt-[500px]  /* trækker billedet op over videoen */
          z-10"
 >
   <img
@@ -43,14 +43,14 @@ import Card from '../components/Card.astro';
       sm:w-[140%]     /* 140% fra small screens */
       md:w-[160%]     /* 160% fra medium screens */
       lg:w-[100%]     /* 180% fra large screens */
-      max-w-none
+      max-w-250
       object-contain
     "
   />
 </div>
 
 <!-- 3) Tilmeldings-sektionen under -->
-<section class="text-center max-w-[900px] w-full mx-auto mt-14 px-4">
+<section class="text-center max-w-[900px] w-full mx-auto mt-30 px-4">
   <p class="text-xl md:text-2xl font-semibold text-[#B64014]">21,097 KM</p>
   <a href="/tilmelding" class="text-[#B64014] underline block mt-1">Tilmeld dig</a>
   
@@ -59,7 +59,7 @@ import Card from '../components/Card.astro';
 							
 
 
-<Accordion/>
+
 
 <Countdown targetDate="2025-08-04T09:30:00" />
 
