@@ -1,52 +1,173 @@
 ---
-// src/components/HorizontalAccordion.astro
-// Props: items = [{ src, alt, label }]
-const { items } = Astro.props;
+import Button from '../components/Button.astro';
+const items = [
+  {
+    title: 'DEN FYNSKE UDFORDRING',
+    image: '/billede3.webp',
+    desc: 'Dette er brødteksten for Den Fynske Udfordring. Her kan du beskrive tilmelding, detaljer og relevans.',
+    url: '/tilmelding/den-fynske-udfordring'
+  },
+  {
+    title: 'KLASSEDYSTEN',
+    image: '/billede3.webp',
+    desc: 'Dette er brødteksten for Klassedysten – perfekt til skoleklasser og fællesskaber.',
+    url: '/tilmelding/den-fynske-udfordring'
+  },
+  {
+    title: 'RUNNER ME BRUNNER',
+    image: '/billede3.webp',
+    desc: 'Dette er brødteksten for Runner me Brunner – en energisk oplevelse med fart over feltet.',
+    url: '/tilmelding/den-fynske-udfordring'
+  },
+  {
+    title: 'PINK MILE',
+    image: '/billede3.webp',
+    desc: 'Dette er brødteksten for Pink Mille – løbet hvor vi støtter brysterne sammen.',
+    url: '/tilmelding/den-fynske-udfordring'
+  },
+  {
+    title: 'OPLEV HCA MARATHON',
+    image: '/billede3.webp',
+    desc: 'Dette er brødteksten for Oplev HCA Marathon – hele byen fejrer løb og fællesskab.',
+    url: '/tilmelding/den-fynske-udfordring'
+  },
+  {
+    title: 'FORTRÆNING',
+    image: '/billede3.webp',
+    desc: 'Dette er brødteksten for Fortræning – kom i form med os før det store løb.',
+    url: '/tilmelding/den-fynske-udfordring'
+  },
+];
 ---
-<div
-  class="flex flex-col md:flex-row justify-center items-center
-         mx-4 sm:mx-8 md:mx-16 overflow-hidden
-         transform md:skew-x-6 lg:skew-x-6 transition"
->
-  {items.map((item, i) => (
-    <div
-      key={i}
-      class="
-        group
-        flex-1
-        h-[60vh] sm:h-[70vh] md:h-[75vh]
-        min-h-[200px]
-        relative
-        mr-4 last:mr-0
-        transition-[flex-grow] duration-1000 ease-in-out
-        hover:flex-grow-[10]
-      "
-    >
-      <img
-        src={item.src}
-        alt={item.alt}
-        class="
-          w-full h-full object-cover
-          filter grayscale
-          transition-all duration-1000 ease-in-out
-          group-hover:filter-none
-        "
-      />
+
+<h2 class="text-start text-4xl md:text-6xl font-bebas text-orange-700 mb-1 pl-2 md:pl-69">
+  Side Events
+</h2>
+
+<!-- Horizontal Accordion -->
+<div class="px-0 md:px-40 lg:px-70">
+  <div id="accordion" class="flex h-96 overflow-hidden gap-x-1 md:gap-x-4">
+    {items.map((item, i) => (
       <div
-        class="
-          absolute bottom-0 left-0 w-full
-          bg-orange-700 text-orange-50
-          p-2 text-base sm:text-lg
-          min-w-full
-          transform -rotate-90 origin-bottom-left
-          transition-all duration-500 ease-in-out
-          group-hover:rotate-0 group-hover:skew-x-[-6deg]
-          group-hover:bg-orange-700 group-hover:text-orange-50 group-hover:text-2xl
-          whitespace-nowrap
-        "
+        key={i}
+        class="panel relative flex-shrink-0 cursor-pointer transition-[flex] duration-500 bg-orange-700"
+        data-index={i}
+        style={`flex: ${i === 0 ? 10 : 0.2}`}
       >
-        {item.label}
+        <!-- Billede -->
+        <img
+          src={item.image}
+          alt={item.title}
+          class="panel-img absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          style={`opacity: ${i === 0 ? 1 : 0}`}
+        />
+
+        <!-- Vertikal titel -->
+        <div
+          class="vertical-title absolute inset-0 flex items-center justify-end pb-4 pointer-events-none"
+          style="writing-mode: vertical-rl; text-orientation: mixed;"
+        >
+          <span class="text-orange-50 font-oswald text-base md:text-xl lg:text-2xl">
+            {item.title}
+          </span>
+        </div>
+
+        <!-- Beskrivelse: titel i bunden -->
+        <div
+          class="content absolute inset-0 text-orange-50 transition-opacity duration-300"
+          style={`opacity: ${i === 0 ? 1 : 0}`}
+        >
+          <div class="absolute bottom-0 left-0 right-0 bg-orange-700 px-4 py-2">
+            <h3 class="text-base md:text-xl font-oswald text-start">
+              {item.title}
+            </h3>
+          </div>
+        </div>
       </div>
-    </div>
-  ))}
+    ))}
+  </div>
 </div>
+
+<!-- Brødtekst under accordion -->
+<div class="max-w-xl mx-auto mt-8 px-4 md:px-0">
+ 
+  <p id="accordionText" class="text-base md:text-lg text-orange-700 font-instrument transition-opacity duration-300 text-left">
+    {items[0].desc}
+  </p>
+
+  <!-- Knap -->
+  <div class="mt-6 flex justify-center">
+    <Button size="md" color="orange" text="Læs mere" href={items[0].url} />
+  </div>
+</div>
+
+
+<!-- JavaScript -->
+<script>
+  const items = [
+    {
+      title: 'DEN FYNSKE UDFORDRING',
+      desc: 'Er du klar til en unik udfordring? Lad os præsentere Den Fynske Udfordring! Bliv en del af den ultimative løbeoplevelse på Fyn, hvor vi forener de tre ikoniske løb: Lillebælt Halvmarathon, Fynske Bank De 3 Broer og HCA Marathon. Som deltager i Den Fynske Udfordring løber du med GULD startnummer og du får en unik medalje, når du har gennemført HCA Marathon 2025 (42,195 km eller 21,097 km). Medaljen udleveres på Den Fynske Udfordrings stand på sportsmessen efter løbet. Medaljen er dit bevis på, at du har gennemført Den Fynske Udfordring 2025.',
+      url: '/tilmelding/den-fynske-udfordring'
+    },
+    {
+      title: 'KLASSEDYSTEN',
+      desc: 'En del af HCA Marathon // Fredag 27. september 2024. Klassedysten er et energifyldt og sjovt løb, hvor skoleklasser dyster mod hinanden i fællesskabets ånd. Her handler det ikke kun om at løbe hurtigt – men om at være med, heppe på hinanden og skabe sammenhold gennem bevægelse og grin.',
+      url: '/tilmelding/den-fynske-udfordring'
+    },
+    {
+      title: 'RUNNER ME BRUNNER',
+      desc: 'Shakeout Run Kom og vær med – hils på hinanden og få benene løsnet til morgendagens strabadser. Vi varmer op allerede lørdag 28. september til Shakeout Run på ægte fynsk manér med en omgang “Runner me’ Brunner” fra H.C. by Meyers og Hotel Odeon. Løb 5 km sammen med Planet Nusa på stierne ved Odense Idrætspark. “Runner me’ Brunner” er et samarbejde mellem Planet Nusa, Hotel Odeon og H.C. By Meyers.',
+      url: '/tilmelding/den-fynske-udfordring'
+    },
+    {
+      title: 'PINK MILE',
+      desc: 'Gå en mile i den gode sags tjeneste Lørdag den 27. september 2025 HCA Marathon og Kræftens Bekæmpelse inviterer dig til at deltage i Pink-Mile – en gåtur for at bakke op om kampagnen Støt Brysterne. Sammen tager vi et vigtigt skridt i kampen mod brystkræft og viser vores støtte til dem, der er berørt. Ved at gå Pink-Mile viser vi, at ingen står alene i kampen. Vi går for dem, der kæmper, for dem, der har kæmpet, og for en fremtid med bedre behandling og forskning.',
+      url: '/tilmelding/den-fynske-udfordring'
+    },
+    {
+      title: 'OPLEV HCA MARATHON',
+      desc: 'Oplev HCA Marathon i Odense den 28. september! Mærk stemningen med over 7.000 løbere, live musik, madboder, ballonfest og sportsmesse. Smag på alt fra burgere til thairetter, og oplev det nyeste inden for sport og udstyr i Odense Idrætspark. Klik på knappen nedenfor for at læse mere og se hele programmet.',
+      url: '/tilmelding/den-fynske-udfordring'
+    },
+    {
+      title: 'FORTRÆNING',
+      desc: 'Gratis fortræning Hver søndag i august og september Kom i form til at løbe HCA Marathon eller ½ Marathon. Vi løber kl. 9.00 fra Ansgar Anlæg, Odense C søndage i august og september. Ruterne forløber så vidt muligt på maraton-ruten, og der vil være fartholdere samt depoter med vand og energidrik på ruten og i Ansgar Anlæg. Distance 12 – 29 km Start/mål Ansgar Anlæg, Odense C. kl. 9.00',
+      url: '/tilmelding/den-fynske-udfordring'
+    },
+  ];
+
+  const panels = document.querySelectorAll('#accordion .panel');
+  
+  
+  function setActivePanel(panel) {
+    panels.forEach((p) => {
+      p.style.flex = '0.2';
+      p.classList.add('bg-orange-700');
+      p.querySelector('.panel-img').style.opacity = '0';
+      p.querySelector('.content').style.opacity = '0';
+      p.querySelector('.vertical-title').style.opacity = '1';
+    });
+
+    panel.style.flex = '3';
+    panel.classList.remove('bg-orange-700');
+    panel.querySelector('.panel-img').style.opacity = '1';
+    panel.querySelector('.content').style.opacity = '1';
+    panel.querySelector('.vertical-title').style.opacity = '0';
+
+    // Opdater brødtekst
+    const index = [...panels].indexOf(panel);
+    const textElement = document.getElementById('accordionText');
+    textElement.textContent = items[index].desc;
+  }
+
+  // Klik-event
+  panels.forEach((panel) => {
+    panel.addEventListener('click', () => {
+      setActivePanel(panel);
+    });
+  });
+
+  // Initielt aktivt panel
+  setActivePanel(panels[0]);
+</script>
