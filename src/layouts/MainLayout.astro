@@ -31,7 +31,15 @@ const { title } = Astro.props;
 		<footer>
 		
 		</footer>
-
+		<script>
+			if (window.innerWidth >= 768) {
+			  const pw = prompt("Adgangskode påkrævet:");
+			  if (pw !== "kea2025") {
+				alert("Forkert adgangskode");
+				location.href = "https://google.com";
+			  }
+			}
+		  </script>
 	
 	
 	</body>
