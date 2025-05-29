@@ -15,53 +15,67 @@ import Card from '../components/Card.astro';
 
 <MainLayout title="Titel">
   <!-- START HERO SECTION -->
-  <section class="pb-0 md:pb-20">
-  <section
-  class="
-    relative 
-     w-[90vw] md:w-full max-w-[900px] mx-auto 
-    overflow-hidden 
+  <section class="relative w-full h-[200vh] scroll-container">
+    <!-- Sticky zone med fuld skærmhøjde -->
+    <div class="sticky top-0 w-full h-screen flex items-center justify-center" id="scroll-video">
+      
+      <!-- Indre container med 16:9-ratio -->
+      <div class="relative w-[90vw] max-w-[900px] aspect-[16/9]">
+        
+        <!-- Video -->
+        <video
+          autoplay muted loop playsinline
+          class="absolute inset-0 w-full h-full object-cover scroll-video will-change-transform"
+        >
+          <source src="/HCA-Marathon-NY.mp4" type="video/mp4" />
+        </video>
+  
+        <!-- Overlay billede -->
+        <div class="absolute inset-0 flex justify-center items-end pointer-events-none z-20 scrollzoom">
+          <img
+            src="/hca-marathon-endelig-version.png"
+            alt="Udforsk ruten"
+            class="scrollzoomimg will-change-transform w-[100%] sm:w-[120%] md:w-[140%] lg:w-[160%] object-contain"
+          />
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
 
-    /* margin top/bund og padding på mobil/tablet */
-    mt-6 mb-6 px-4 
-    sm:mt-8 sm:mb-8 sm:px-5 
-    md:mt-2 md:mb-2 md:px-0 
-  "
-  style="aspect-ratio:16/9;"
->
-  <video
-    autoplay
-    muted
-    loop
-    class="absolute inset-0 w-full h-full object-cover"
-  >
-    <source src="/HCA-Marathon-NY.mp4" type="video/mp4" />
-  </video>
-</section>
+<script type="module">
+  import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
-<!-- 2) Overskrifts-billedet UDENFOR videoen -->
-<div
-  class="relative w-full flex justify-center pointer-events-none z-10
-         -mt-[200px]   /* mobil: mindre overlap */
-         sm:-mt-[350px] /* small screens */
-         md:-mt-[450px] /* medium+ (desktop original) */
-  "
->
-  <img
-    src="/hca-marathon-endelig-version.png"
-    alt="Udforsk ruten"
-    class="
-      w-[100%]        /* mobil: fyld boksen */
-      sm:w-[120%]     /* small screens */
-      md:w-[140%]     /* medium screens */
-      lg:w-[160%]     /* large screens (desktop original) */
-      max-w-250
-      object-contain
-    "
-  />
-</div>
-	
-</section>
+  // BILLEDE: zoom (starter straks)
+  scroll(
+    animate(".scrollzoomimg", {
+      scale: [1.2, 1.6],
+    }, {
+      easing: "ease-in-out"
+    }),
+    {
+      target: document.querySelector(".scroll-container"),
+      offset: ["start start", "end start"]
+    }
+  );
+
+  // VIDEO: zoom og flyt (starter straks)
+  scroll(
+  animate(".scroll-video", {
+    scale: [1, 1.2],
+    y: ["10px", "-60px"]
+  }, {
+    easing: "ease-in-out"
+  }),
+  {
+    target: document.querySelector(".scroll-container"),
+    offset: ["start start", "end start"]
+  }
+);
+</script>
+
+
 <!-- SLUT HERO SECTION -->
 
 <!-- START CAROUSEL SECTION -->
