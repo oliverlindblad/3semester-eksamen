@@ -8,6 +8,36 @@ import { Image } from 'astro:assets';
 import thumbsup from "../assets/images/thumbsup.png";
 import Card from "../components/Card.astro";
 import Footer from "../components/Footer.astro";
+import HorizontalAccordion from '../components/HorizontalAccordion.astro';
+
+const items = [
+  {
+    src: '/public/billede2.webp',
+    alt: 'Den Fynske Udfordring',
+    label: 'Den Fynske Udfordring',
+  },
+  {
+    src: '/public/billede4.webp',
+    alt: 'Klassedysten',
+    label: 'Klassedysten',
+  },
+  {
+    src: '/public/billede5.webp',
+    alt: 'Runner me’ Brunner',
+    label: 'Runner me’ Brunner',
+  },
+  {
+    src: '/public/billede11.webp',
+    alt: 'Pink-Mile',
+    label: 'Pink-Mile',
+  },
+  {
+    src: '/public/billede1.webp',
+    alt: 'Oplev HCA Marathon',
+    label: 'Oplev HCA Marathon',
+  },
+];
+
 ---
 
 <MainLayout title="Rute">
@@ -99,7 +129,7 @@ import Footer from "../components/Footer.astro";
     </div>
 
     <!-- Højre: Strava Embed -->
-    <div class="w-full aspect-w-16 aspect-h-9 shadow-md overflow-hidden">
+    <div class="w-full aspect-w-16 aspect-h-9 overflow-hidden">
       <div
         class="strava-embed-placeholder w-full h-full"
         data-embed-type="route"
@@ -178,7 +208,7 @@ import Footer from "../components/Footer.astro";
     <!-- Desktop grid: overskrift i venstre, tabel i højre -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- 1) Venstre kolonne: overskrift -->
-      <h4 class="text-4xl font-Bebas text-orange-700 md:col-span-1">
+      <h4 class="text-4xl font-bebas text-orange-700 md:col-span-1">
         Forplejningszoner
       </h4>
 
@@ -271,8 +301,13 @@ import Footer from "../components/Footer.astro";
  </div>
 
 
-</MainLayout>
+<main class="py-16">
+  <HorizontalAccordion items={items} />
+</main>
 
+
+
+</MainLayout>
 
 
  
