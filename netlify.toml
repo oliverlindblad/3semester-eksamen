@@ -1,11 +1,4 @@
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
-  conditions = { Role = ["user"] }
-
 [[headers]]
   for = "/*"
   [headers.values]
-  Basic-Auth = "user:password"
+  Basic-Auth = "exam:1234"
