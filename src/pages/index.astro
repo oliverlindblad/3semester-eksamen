@@ -15,7 +15,7 @@ import Card from '../components/Card.astro';
 
 <MainLayout title="Titel">
   <!-- START HERO SECTION -->
-  <section>
+  <section class="pb-0 md:pb-20">
   <section
   class="
     relative 
@@ -64,88 +64,206 @@ import Card from '../components/Card.astro';
 </section>
 <!-- SLUT HERO SECTION -->
 
-<!-- START CARUSEL SECTION -->
-<section 
-  x-data="{
-    activeIndex: 0,
-    items: [
-      { img: '/billede3.webp', title: 'LØB DE SIDSTE 10' },
-      { img: '/billede5.webp', title: 'HCA MARATHON' },
-      { img: '/billede4.webp', title: 'DM MARATHON' },
-      { img: '/billede2.webp', title: 'HALV MARATHON' }
-    ]
-  }"
-  class="relative max-w-6xl mx-auto px-4 pt-20"
->
-  <!-- Header -->
-  <div class="flex items-center justify-between mb-6">
-    <h2 class="font-bebas text-3xl md:text-5xl text-orange-700">
-      TILMELDINGSMULIGHEDER
-    </h2>
-    <div class="flex items-center gap-2">
-      <button 
-        @click="activeIndex = (activeIndex - 1 + items.length) % items.length"
-        class="text-black hover:text-orange-700 text-xl"
-      >
-        ←
-      </button>
-      <button 
-        @click="activeIndex = (activeIndex + 1) % items.length"
-        class="text-black hover:text-orange-700 text-xl"
-      >
-        →
-      </button>
-    </div>
-  </div>
+<!-- START CAROUSEL SECTION -->
+ <section>
+<div class="py-8 relative pt-30 w-screen">  
+  <h2 class="text-orange-700 text-3xl md:text-5xl font-bebas mb-2 md:mb-4 pl-4 md:pl-5">TILMELD DIG DIREKTE</h2>
+  
 
-  <!-- Carousel track -->
-  <div class="overflow-hidden relative">
-    <div 
-      class="flex transition-transform duration-500"
-      :style="`transform: translateX(-${activeIndex * 100}%); width: ${items.length * 100}%`"
-    >
-      <template x-for="(item, index) in items" :key="index">
-        <div class="w-full flex-shrink-0 px-4 text-center">
-          <div class="group">
-            <img 
-              :src="item.img"
-              :alt="item.title"
-              class="mx-auto h-56 sm:h-64 md:h-72 object-cover transition duration-300 group-hover:grayscale-0 grayscale"
-            />
-            <div 
-              class="mt-2 font-bebas text-orange-700 text-xl relative"
-              :class="{ 'underline underline-offset-4 decoration-2': index === activeIndex }"
-              x-text="item.title"
-            ></div>
-          </div>
-        </div>
-      </template>
+  <!-- Carousel fylder hele skærmen -->
+  <div
+    id="carousel"
+    class="overflow-x-auto scroll-smooth snap-x snap-mandatory flex"
+  >
+    <!-- Slide 1 -->
+    <div class="group snap-center flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3 px-4 cursor-pointer">
+      <div class="w-full h-48 md:h-64 lg:h-72 overflow-hidden">
+         <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank">
+        <img
+          src="/billede3.webp"
+          alt="løb de sidste 10"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+        />
+      </a>
+      </div>
+      <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+        >LØB DE SIDSTE 10</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Progress bar -->
-  <div class="relative mt-4 h-1 bg-neutral-300">
-    <div 
-      class="absolute top-0 left-0 h-full bg-orange-700 transition-all duration-300"
-      :style="`width: ${(100 / items.length) * (activeIndex + 1)}%`"
-    ></div>
-  </div>
+    <!-- Slide 2 -->
+    <div class="group snap-center flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3 px-4 cursor-pointer">
+      <div class="w-full h-48 md:h-64 lg:h-72 overflow-hidden">
+        <a
+        href="https://www.sportstiming.dk/event/15085" target="_blank">
+        <img
+          src="/billede5.webp"
+          alt="hca marathon"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+        />
+      </a>
+      </div>
+      <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+        >HCA MARATHON</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="group snap-center flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3 px-4 cursor-pointer">
+      <div class="w-full h-48 md:h-64 lg:h-72 overflow-hidden">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank">
+        <img
+          src="/billede4.webp"
+          alt="dm marathon"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+        />
+      </a>
+      </div>
+      <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+        >DM MARATHON</a>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="group snap-center flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3 px-4 cursor-pointer">
+      <div class="w-full h-48 md:h-64 lg:h-72 overflow-hidden">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank">
+        <img
+          src="/billede2.webp"
+          alt="halv marathon"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+        />
+      </a>
+      </div>
+      <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+        >HALV MARATHON</a>
+      </div>
+    </div>
+
+     <!-- Slide 5 -->
+     <div class="group snap-center flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3 px-4 cursor-pointer">
+      <div class="w-full h-48 md:h-64 lg:h-72 overflow-hidden">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank">
+        <img
+          src="/mini.jpg"
+          alt="mini marathon"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+        />
+      </a>
+      </div>
+      <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
+        <a
+          href="https://www.sportstiming.dk/event/15085" target="_blank"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+        >MINI MARATHON</a>
+      </div>
+    </div>
+
+  <!-- Pil-knapper -->
+  <button
+  id="prevBtn"
+  aria-label="Forrige"
+  class="absolute top-29 right-10 md:right-20
+         cursor-pointer
+         text-xl md:text-3xl        /* større pil på desktop */
+         p-2 md:p-4                 /* mere klik-flade på desktop */
+         rounded-full
+         text-black hover:text-orange-700"
+>&larr;</button>
+
+<button
+  id="nextBtn"
+  aria-label="Næste"
+  class="absolute top-29 right-2 md:right-8
+         cursor-pointer
+         text-xl md:text-3xl
+         p-2 md:p-4
+         rounded-full
+         text-black hover:text-orange-700"
+>&rarr;</button>
+
+</div>
+
+<script>
+  const carousel = document.getElementById('carousel');
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    carousel.scrollBy({ left: -carousel.clientWidth * 0.8, behavior: 'smooth' });
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    carousel.scrollBy({ left: carousel.clientWidth * 0.8, behavior: 'smooth' });
+  });
+</script>
+
 </section>
+ <!-- SLUT CAROUSEL SECTION -->
 
 
- <!-- SLUT CARUSEL SECTION -->
+  <!-- Start INFO SECTION -->
+  <section>
+    <div class="flex flex-col lg:flex-row gap-6 items-end max-w-4xl mx-auto px-4 pt-20 md:pt-30">
+      <!-- Billed-container med relative placering -->
+      <div class="relative w-full lg:w-[45%]">
+        <!-- Billedet -->
+        <img src="/billede19.webp" alt="Halvmarathon" class="w-auto max-w-[220px] sm:max-w-sm md:max-w-full grayscale-90 object-cover mx-auto"/>
+
+      
+  
+        <!-- Overskrift ovenpå billedet -->
+        <h2 class="absolute top-1/5 left-3/7 -translate-x-[35%] -translate-y-[60%] text-2xl sm:text-3xl md:text-4xl lg:text-6xl  font-bebas text-orange-700  whitespace-nowrap">
+          HCA MARATHON FEJRER 25 ÅR I 2025
+        </h2>
+
+      
+      </div>
+  
+      <!-- Brødtekst som står ved siden af og flugter med bunden -->
+      <div class="w-full lg:w-[55%] text-sm font-instrument leading-relaxed space-y-3 self-end">
+        <p>Den 28. september 2025 inviterer HCA Marathon for 25. gang løbere og tilskuere til en festlig dag i Odenses gader. Her kombineres løbeglæde, fællesskab og en unik løbeoplevelse. Uanset om du er debutant eller erfaren maratonløber, er målet, at du rejser hjem med minder om en fantastisk dag. Med en trafikfri rute, der snor sig gennem hjertet af byen, er HCA Marathon en fejring for hele familien. Foruden det klassiske maraton kan du vælge ½ Marathon eller “Løb de sidste 10”. Selv de yngste kan tage del i løbefesten ved MiniMarathon på 4,2 km.
+            Tag med og skab dit eget eventyr i H.C. Andersens by – vi glæder os til at løbe sammen med dig!</p>
+      
+        <p><strong>Læs mere om løbet nedenfor.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLUT INFO SECTION -->
+
+  <!-- START COUNTDOWN SECTION -->
+   <section>
+    <div class="pt-30 md:pt-40">
+      <Countdown targetDate="2025-08-04T09:30:00" />
+      </div>
+   </section>
+  <!-- SLUT COUNTDOWN SECTION -->
+
+  <!-- START BANNER SECTION -->
+  <div class="pt-35 md:pt-30">
+    <Banner/>
+    </div>
+  <!-- SLUT BANNER SECTION -->
 
 
 
 
 
-<Card
 
-cardimage="public/billede7.webp"
-cardimagealt="forplejningszoner"
-cardtitel="Forplejningszoner"
-cardtekst="Forplejningszonerne i HCA Marathon byder på vand, energidrik og snacks. De er jævnt fordelt langs ruten og bemandet af frivillige."
-></Card>
+
 
 <Footer/>
 

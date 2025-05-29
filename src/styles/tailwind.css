@@ -81,3 +81,14 @@
     animation: fade-in-down 0.8s ease-out forwards;
   }
 }
+
+#carousel {
+  /* IE, Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+}
+/* Chrome, Safari, Opera */
+#carousel::-webkit-scrollbar {
+  display: none;
+}
