@@ -1,381 +1,52 @@
 ---
+// src/components/HorizontalAccordion.astro
+// Props: items = [{ src, alt, label }]
+const { items } = Astro.props;
 ---
-
-<style lang="postcss">
-/* Ripple effekt til knappen */
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.4);
-  animation: ripple-animation 0.6s linear;
-  pointer-events: none;
-  transform: scale(0);
-}
-@keyframes ripple-animation {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-</style>
-
-<div class="relative max-w-3xl mx-auto px-5 py-8 min-h-[700px] flex flex-col items-center overflow-x-hidden">
-
-  <!-- Accordion -->
-  <div
-    id="accordion"
-    class="flex w-full max-w-3xl h-[450px] rounded-sm shadow-md overflow-hidden border border-transparent"
-  >
-    <!-- Panels - skal dynamisk genereres fra data, men her hardcoded -->
-
-    {/*
-      For simplicity: 5 panels, active panel får flex-grow 6, andre flex-grow 1.
-      Background med grayscale og skala.
-      Info skjult/vises på active.
-      Artist name roteret, skjult på active.
-    */}
-
+<div
+  class="flex flex-col md:flex-row justify-center items-center
+         mx-4 sm:mx-8 md:mx-16 overflow-hidden
+         transform md:skew-x-6 lg:skew-x-6 transition"
+>
+  {items.map((item, i) => (
     <div
-      class="panel relative flex-grow cursor-pointer border-r border-white/20 last:border-r-0 transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      data-active="true"
-      style="flex-grow: 6;"
+      key={i}
+      class="
+        group
+        flex-1
+        h-[60vh] sm:h-[70vh] md:h-[75vh]
+        min-h-[200px]
+        relative
+        mr-4 last:mr-0
+        transition-[flex-grow] duration-1000 ease-in-out
+        hover:flex-grow-[10]
+      "
     >
+      <img
+        src={item.src}
+        alt={item.alt}
+        class="
+          w-full h-full object-cover
+          filter grayscale
+          transition-all duration-1000 ease-in-out
+          group-hover:filter-none
+        "
+      />
       <div
-        class="absolute inset-0 bg-center bg-cover grayscale-[60%] scale-[1.1] transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
+        class="
+          absolute bottom-0 left-0 w-full
+          bg-orange-700 text-orange-50
+          p-2 text-base sm:text-lg
+          min-w-full
+          transform -rotate-90 origin-bottom-left
+          transition-all duration-500 ease-in-out
+          group-hover:rotate-0 group-hover:skew-x-[-6deg]
+          group-hover:bg-orange-700 group-hover:text-orange-50 group-hover:text-2xl
+          whitespace-nowrap
+        "
       >
-        <img src="public/billede11.webp" alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
-      </div>
-
-      <div
-        class="absolute bottom-0 left-0 w-full px-5 py-5 text-white bg-gradient-to-t from-black/60 to-transparent whitespace-nowrap text-lg tracking-widest rotate-[-90deg] origin-bottom-left transition-opacity duration-300 opacity-0 pointer-events-none"
-      >
-        Den fynske udfordring
-      </div>
-
-      <div
-        class="artist-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/70 to-transparent text-white opacity-100 translate-y-0 transition-all duration-500"
-      >
-        <h3 class="text-2xl font-light mb-1">Den fynske udfordring</h3>
-        <h4 class="text-lg font-light text-white/80 mb-4">Infinity Mirrored Room, 2018</h4>
-        <p class="max-w-md text-sm leading-relaxed mb-6">
-          Kusama's immersive installations use mirrors and LED lights to create infinite space, challenging our perception of boundaries and self. This room captures her signature exploration of cosmic infinity.
-        </p>
-        <button
-          class="view-button relative inline-block px-4 py-2 text-xs tracking-widest border border-white/60 hover:bg-white hover:text-black transition cursor-pointer overflow-hidden"
-        >
-          TILMELD
-        </button>
-       
+        {item.label}
       </div>
     </div>
-
-    <div
-      class="panel relative flex-grow cursor-pointer border-r border-white/20 last:border-r-0 transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      style="flex-grow: 1;"
-    >
-    <div
-        class="absolute inset-0 bg-center bg-cover grayscale-[60%] scale-[1.1] transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      >
-        <img src="public/billede10.webp" alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
-      </div>
-
-      <div
-        class="artist-name absolute bottom-0 left-0 w-full px-5 py-5 text-white bg-gradient-to-t from-black/60 to-transparent whitespace-nowrap text-lg tracking-widest rotate-[-90deg] origin-bottom-left transition-opacity duration-300 opacity-100 pointer-events-none"
-      >
-        Den fynske udfordring
-      </div>
-
-      <div
-        class="artist-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/70 to-transparent text-white opacity-0 translate-y-5 transition-all duration-500 pointer-events-none"
-      >
-        <h3 class="text-2xl font-light mb-1">Klassedysten</h3>
-        <h4 class="text-lg font-light text-white/80 mb-4">Ganzfeld: Double Vision, 2021</h4>
-        <p class="max-w-md text-sm leading-relaxed mb-6">
-          Turrell manipulates light and space to create works that engage viewers with the limits and possibilities of human perception. This piece produces a visual field devoid of depth cues.
-        </p>
-        <button
-          class="view-button relative inline-block px-4 py-2 text-xs tracking-widest border border-white/60 hover:bg-white hover:text-black transition cursor-pointer overflow-hidden"
-        >
-          TILMELD
-        </button>
-        
-      </div>
-    </div>
-    <div
-      class="panel relative flex-grow cursor-pointer border-r border-white/20 last:border-r-0 transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      style="flex-grow: 1;"
-    >
-    <div
-        class="absolute inset-0 bg-center bg-cover grayscale-[60%] scale-[1.1] transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      >
-        <img src="public/billede7.webp" alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
-      </div>
-
-      <div
-        class="artist-name absolute bottom-0 left-0 w-full px-5 py-5 text-white bg-gradient-to-t from-black/60 to-transparent whitespace-nowrap text-lg tracking-widest rotate-[-90deg] origin-bottom-left transition-opacity duration-300 opacity-100 pointer-events-none"
-      >
-        Klassedysten
-      </div>
-
-      <div
-        class="artist-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/70 to-transparent text-white opacity-0 translate-y-5 transition-all duration-500 pointer-events-none"
-      >
-        <h3 class="text-2xl font-light mb-1">Runner me' Brunner</h3>
-        <h4 class="text-lg font-light text-white/80 mb-4">Ganzfeld: Double Vision, 2021</h4>
-        <p class="max-w-md text-sm leading-relaxed mb-6">
-          Turrell manipulates light and space to create works that engage viewers with the limits and possibilities of human perception. This piece produces a visual field devoid of depth cues.
-        </p>
-        <button
-          class="view-button relative inline-block px-4 py-2 text-xs tracking-widest border border-white/60 hover:bg-white hover:text-black transition cursor-pointer overflow-hidden"
-        >
-          TILMELD
-        </button>
-        
-      </div>
-    </div>
-        <div
-      class="panel relative flex-grow cursor-pointer border-r border-white/20 last:border-r-0 transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      style="flex-grow: 1;"
-    >
-    <div
-        class="absolute inset-0 bg-center bg-cover grayscale-[60%] scale-[1.1] transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      >
-        <img src="public/billede8.webp" alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
-      </div>
-
-      <div
-        class="artist-name absolute bottom-0 left-0 w-full px-5 py-5 text-white bg-gradient-to-t from-black/60 to-transparent whitespace-nowrap text-lg tracking-widest rotate-[-90deg] origin-bottom-left transition-opacity duration-300 opacity-100 pointer-events-none"
-      >
-       Runner me' Brunner
-      </div>
-
-      <div
-        class="artist-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/70 to-transparent text-white opacity-0 translate-y-5 transition-all duration-500 pointer-events-none"
-      >
-        <h3 class="text-2xl font-light mb-1">Pink-Mile</h3>
-        <h4 class="text-lg font-light text-white/80 mb-4">Ganzfeld: Double Vision, 2021</h4>
-        <p class="max-w-md text-sm leading-relaxed mb-6">
-          Turrell manipulates light and space to create works that engage viewers with the limits and possibilities of human perception. This piece produces a visual field devoid of depth cues.
-        </p>
-        <button
-          class="view-button relative inline-block px-4 py-2 text-xs tracking-widest border border-white/60 hover:bg-white hover:text-black transition cursor-pointer overflow-hidden"
-        >
-          TILMELD
-        </button>
-        
-      </div>
-    </div>
-        <div
-      class="panel relative flex-grow cursor-pointer border-r border-white/20 last:border-r-0 transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      style="flex-grow: 1;"
-    >
-    <div
-        class="absolute inset-0 bg-center bg-cover grayscale-[60%] scale-[1.1] transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      >
-        <img src="public/billede9.webp" alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
-      </div>
-
-      <div
-        class="artist-name absolute bottom-0 left-0 w-full px-5 py-5 text-white bg-gradient-to-t from-black/60 to-transparent whitespace-nowrap text-lg tracking-widest rotate-[-90deg] origin-bottom-left transition-opacity duration-300 opacity-100 pointer-events-none"
-      >
-        Pink-Mile
-      </div>
-
-      <div
-        class="artist-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/70 to-transparent text-white opacity-0 translate-y-5 transition-all duration-500 pointer-events-none"
-      >
-        <h3 class="text-2xl font-light mb-1">Oplev HCA Marathon</h3>
-        <h4 class="text-lg font-light text-white/80 mb-4">Ganzfeld: Double Vision, 2021</h4>
-        <p class="max-w-md text-sm leading-relaxed mb-6">
-          Turrell manipulates light and space to create works that engage viewers with the limits and possibilities of human perception. This piece produces a visual field devoid of depth cues.
-        </p>
-        <button
-          class="view-button relative inline-block px-4 py-2 text-xs tracking-widest border border-white/60 hover:bg-white hover:text-black transition cursor-pointer overflow-hidden"
-        >
-          TILMELD
-        </button>
-        
-      </div>
-    </div>
-        <div
-      class="panel relative flex-grow cursor-pointer border-r border-white/20 last:border-r-0 transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      style="flex-grow: 1;"
-    >
-    <div
-        class="absolute inset-0 bg-center bg-cover grayscale-[60%] scale-[1.1] transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.3,1)]"
-      >
-        <img src="public/billede13.webp" alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
-      </div>
-
-      <div
-        class="artist-name absolute bottom-0 left-0 w-full px-5 py-5 text-white bg-gradient-to-t from-black/60 to-transparent whitespace-nowrap text-lg tracking-widest rotate-[-90deg] origin-bottom-left transition-opacity duration-300 opacity-100 pointer-events-none"
-      >
-        Oplev HCA Marathon
-      </div>
-
-      <div
-        class="artist-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/70 to-transparent text-white opacity-0 translate-y-5 transition-all duration-500 pointer-events-none"
-      >
-        <h3 class="text-2xl font-light mb-1">Fortræning</h3>
-        <h4 class="text-lg font-light text-white/80 mb-4">Ganzfeld: Double Vision, 2021</h4>
-        <p class="max-w-md text-sm leading-relaxed mb-6">
-          Turrell manipulates light and space to create works that engage viewers with the limits and possibilities of human perception. This piece produces a visual field devoid of depth cues.
-        </p>
-        <button
-          class="view-button relative inline-block px-4 py-2 text-xs tracking-widest border border-white/60 hover:bg-white hover:text-black transition cursor-pointer overflow-hidden"
-        >
-          TILMELD
-        </button>
-        
-      </div>
-    </div>
- 
-    <!-- Yderligere panels kan tilføjes her på samme måde -->
-  </div>
+  ))}
 </div>
-
-<script is:inline>
-  const panels = [...document.querySelectorAll('.panel')];
-  
-
-  function removeActive() {
-    panels.forEach(panel => {
-      panel.dataset.active = 'false';
-      panel.style.flexGrow = '1';
-
-      const bg = panel.querySelector('div[style*="background-image"]');
-      if (bg) {
-        bg.style.filter = 'grayscale(60%)';
-        bg.style.transform = 'scale(1.1)';
-      }
-
-      const artistName = panel.querySelector('.artist-name');
-      if (artistName) {
-        artistName.style.opacity = '1';
-        artistName.style.pointerEvents = 'none';
-      }
-
-      const artistInfo = panel.querySelector('.artist-info');
-      if (artistInfo) {
-        artistInfo.style.opacity = '0';
-        artistInfo.style.transform = 'translateY(20px)';
-        artistInfo.style.pointerEvents = 'none';
-      }
-    });
-  }
-
-  panels.forEach(panel => {
-    panel.addEventListener('click', () => {
-      removeActive();
-      panel.dataset.active = 'true';
-      panel.style.flexGrow = '6';
-
-      const bg = panel.querySelector('div[style*="background-image"]');
-      if (bg) {
-        bg.style.filter = 'grayscale(0%)';
-        bg.style.transform = 'scale(1)';
-      }
-
-      const artistName = panel.querySelector('.artist-name');
-      if (artistName) {
-        artistName.style.opacity = '0';
-      }
-
-      const artistInfo = panel.querySelector('.artist-info');
-      if (artistInfo) {
-        artistInfo.style.opacity = '1';
-        artistInfo.style.transform = 'translateY(0)';
-        artistInfo.style.pointerEvents = 'auto';
-      }
-    });
-
-    panel.addEventListener('mouseenter', () => {
-      cursorDot.style.width = '60px';
-      cursorDot.style.height = '60px';
-      cursorDot.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-    });
-
-    panel.addEventListener('mouseleave', () => {
-      cursorDot.style.width = '40px';
-      cursorDot.style.height = '40px';
-      cursorDot.style.backgroundColor = 'transparent';
-    });
-  });
-
-  // Custom cursor movement
-  document.addEventListener('mousemove', (e) => {
-    requestAnimationFrame(() => {
-      cursorDot.style.left = `${e.clientX}px`;
-      cursorDot.style.top = `${e.clientY}px`;
-      cursorDot.style.opacity = '1';
-    });
-  });
-
-  document.addEventListener('mouseout', () => {
-    cursorDot.style.opacity = '0';
-  });
-
-  document.addEventListener('mouseover', () => {
-    cursorDot.style.opacity = '1';
-  });
-
-  // Ripple effect for buttons
-  const viewButtons = [...document.querySelectorAll('.view-button')];
-  viewButtons.forEach(button => {
-    button.style.position = 'relative';
-    button.style.overflow = 'hidden';
-
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-
-      const ripple = document.createElement('span');
-      ripple.className = 'ripple';
-      button.appendChild(ripple);
-
-      const rect = button.getBoundingClientRect();
-      const diameter = Math.max(rect.width, rect.height);
-      ripple.style.width = ripple.style.height = `${diameter}px`;
-      ripple.style.left = `${e.clientX - rect.left - diameter / 2}px`;
-      ripple.style.top = `${e.clientY - rect.top - diameter / 2}px`;
-
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
-
-      // Placeholder for actual navigation:
-      console.log('View collection clicked');
-    });
-  });
-
-  // Mobile touch support
-  if ('ontouchstart' in window) {
-    cursorDot.style.display = 'none';
-
-    panels.forEach(panel => {
-      panel.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        removeActive();
-        panel.dataset.active = 'true';
-        panel.style.flexGrow = '6';
-
-        const bg = panel.querySelector('div[style*="background-image"]');
-        if (bg) {
-          bg.style.filter = 'grayscale(0%)';
-          bg.style.transform = 'scale(1)';
-        }
-
-        const artistName = panel.querySelector('.artist-name');
-        if (artistName) {
-          artistName.style.opacity = '0';
-        }
-
-        const artistInfo = panel.querySelector('.artist-info');
-        if (artistInfo) {
-          artistInfo.style.opacity = '1';
-          artistInfo.style.transform = 'translateY(0)';
-          artistInfo.style.pointerEvents = 'auto';
-        }
-      });
-    });
-  }
-</script>
