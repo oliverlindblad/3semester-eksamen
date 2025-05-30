@@ -19,15 +19,16 @@ import Login from "../components/Login.astro";
   
   <!-- START HERO SECTION -->
 <!-- MOBILE: statisk billede med titel -->
-<section class="block md:hidden w-full relative text-center px-4 py-6 pt-20">
+<section class="block md:hidden w-full relative text-center px-4 py-6 pt-30 md:pt-20">
+  <h1 class="text-7xl sm:text-3xl font-bebas text-orange-700">
+    HCA MARATHON
+  </h1>
   <img
     src="/dm-marathon.png"
     alt="Udforsk ruten"
     class="w-full object-cover mb-4"
   />
-  <h1 class="text-2xl sm:text-3xl font-bebas text-orange-700">
-    HCA MARATHON
-  </h1>
+ 
 </section>
 
 
@@ -96,14 +97,13 @@ import Login from "../components/Login.astro";
 
 <!-- START CAROUSEL SECTION -->
  <section>
-<div class="py-8 relative pt-30 w-screen">  
-  <h2 class="text-orange-700 text-lg md:text-8xl font-bebas mb-3 md:mb-4 pl-4 md:pl-5">tilmeld dig herunder</h2>
+<div class="py-8 relative pt-20 md:pt-30 w-screen">  
+  <h2 class="text-orange-700 text-4xl md:text-8xl font-bebas mb-3 md:mb-4 pl-4 md:pl-5">tilmeld dig herunder</h2>
   
   <!-- Carousel fylder hele skærmen -->
   <div
     id="carousel"
-    class="overflow-x-auto scroll-smooth snap-x snap-mandatory flex"
-  >
+    class="overflow-x-auto scroll-smooth snap-x snap-mandatory flex">
     <!-- Slide 1 -->
     <div class="group snap-center flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3 px-4 cursor-pointer">
       <div class="w-full h-48 md:h-64 lg:h-72 overflow-hidden">
@@ -205,27 +205,13 @@ import Login from "../components/Login.astro";
     </div>
 
   <!-- Pil-knapper -->
-  <button
-  id="prevBtn"
-  aria-label="Forrige"
-  class="absolute top-28 md:top-29  right-10 md:right-20
-         cursor-pointer
-         text-xl md:text-3xl        /* større pil på desktop */
-         p-2 md:p-4                 /* mere klik-flade på desktop */
-         rounded-full
-         text-black hover:text-orange-700"
->&larr;</button>
+      <button id="prevBtn" aria-label="Forrige"
+        class="absolute top-19 md:top-29  right-10 md:right-20 cursor-pointer text-xl md:text-3xl p-2 md:p-4 rounded-full text-black hover:text-orange-700">&larr;
+      </button>
 
-<button
-  id="nextBtn"
-  aria-label="Næste"
-  class="absolute top-28 md:top-29  right-2 md:right-8
-         cursor-pointer
-         text-xl md:text-3xl
-         p-2 md:p-4
-         rounded-full
-         text-black hover:text-orange-700"
->&rarr;</button>
+      <button id="nextBtn" aria-label="Næste"
+        class="absolute top-19 md:top-29  right-2 md:right-8 cursor-pointer text-xl md:text-3xl p-2 md:p-4 rounded-full text-black hover:text-orange-700">&rarr;
+      </button>
 
 </div>
 
@@ -247,15 +233,33 @@ import Login from "../components/Login.astro";
   <section>
     <div class="flex flex-col lg:flex-row gap-6 items-end max-w-4xl mx-auto px-4 pt-20 md:pt-30">
       <div class="relative w-full lg:w-[45%]">
-        <img src="/billede19.webp" alt="Halvmarathon"
-          class="scroll-image w-auto max-w-[220px] sm:max-w-sm md:max-w-full grayscale-90 object-cover mx-auto" />
-          <h2 class="scroll-heading absolute top-[0%] left-3/7 -translate-x-[35%] -translate-y-[60%]
-          text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bebas text-orange-700 whitespace-nowrap
-          md:opacity-0 md:translate-y-10 transition-all duration-700">
+        <img
+          src="/billede19.webp"
+          alt="Halvmarathon"
+          class="scroll-image w-auto max-w-[220px] sm:max-w-sm md:max-w-full grayscale-90 object-cover mx-auto"
+        />
+      
+        <h2
+          class="scroll-heading absolute
+          
+            /* — Mobil: Centreret og løftet lidt op — */
+            top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2
+      
+            /* — Tablet+ (md): Jeres gamle værdier — */
+            md:top-[0%] md:left-[42.857%] md:-translate-x-[35%] md:-translate-y-[60%]
+      
+            text-3xl sm:text-3xl md:text-4xl lg:text-6xl
+            font-bebas text-orange-700 whitespace-nowrap
+      
+            /* Animation (kun på md+) */
+            md:opacity-0 md:translate-y-10 transition-all duration-700
+          "
+        >
           HCA MARATHON FEJRER 25 ÅR I 2025
         </h2>
       </div>
-      <div class="scroll-text w-full lg:w-[55%] text-base font-instrument leading-relaxed space-y-3 self-end
+      
+      <div class="scroll-text w-full lg:w-[55%] text-sm md:text-base font-instrument leading-relaxed space-y-3 self-end
         md:opacity-0 md:translate-x-10 transition-all duration-700">
         <p>Den 28. september 2025 inviterer HCA Marathon for 25. gang løbere og tilskuere til en festlig dag i Odenses gader. Her kombineres løbeglæde, fællesskab og en unik løbeoplevelse. Uanset om du er debutant eller erfaren maratonløber, er målet, at du rejser hjem med minder om en fantastisk dag.
           Med en trafikfri rute, der snor sig gennem hjertet af byen, er HCA Marathon en fejring for hele familien. Foruden det klassiske maraton kan du vælge ½ Marathon eller “Løb de sidste 10”. Selv de yngste kan tage del i løbefesten ved MiniMarathon på 4,2 km.
