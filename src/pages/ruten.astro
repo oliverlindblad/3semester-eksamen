@@ -40,90 +40,101 @@ const items = [
 
 ---
 
-<MainLayout title="Rute">
-<!-- Scroll-container -->
- <section class="pb-20">
- </section>
- <section class="relative w-full h-[150vh] scroll-container">
-  <div class="sticky top-0 w-[90vw] md:w-full max-w-[900px] mx-auto aspect-[16/9]" id="scroll-video">
-    
-    <!-- Video -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover scroll-video">
-      <source src="/hca-ruten.mp4" type="video/mp4" />
-    </video>
-    
-    <!-- Billede -->
-    <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-20">
-      <img
-        src="/udforsk-ruten-endelig-version.png"
-        alt="Udforsk ruten"
-        class="w-full sm:w-[120%] md:w-[140%] lg:w-[160%] max-w-250 object-contain scrollzoomimg"
-      />
-    </div>
+<MainLayout title="Ruten">
+ 
+<!-- MOBILE: fallback ruten -->
+<section class="block md:hidden w-full relative text-center px-4 py-6 pt-20">
+  <img
+    src="/halvmarathon.png"
+    alt="Udforsk ruten"
+    class="w-full object-cover mb-4"
+  />
+  <h1 class="text-2xl sm:text-3xl font-bebas text-orange-700">
+    HCA RUTEN
+  </h1>
+  <p class="text-base font-oswald mt-2 text-orange-700">42,195 KM</p>
+  
+  <Link href="/billetter" text="TILMELD" />
+</section>
 
-    <!-- CTA -->
-    <div
-      class="absolute inset-0 flex flex-col items-center justify-end pb-10 text-center z-30 opacity-0 translate-y-10 scroll-cta"
-    >
-      <p class="text-xl md:text-2xl font-oswald text-orange-700">42,195 KM</p>
-      <a
-        href="https://www.sportstiming.dk/event/15085"
-        class="mt-2 inline-block text-orange-700 underline"
-      >
-        TILMELD
-      </a>
+<!-- DESKTOP: scrollytelling version af ruten -->
+<section class="hidden md:block relative w-full h-[200vh] scroll-container">
+  <div class="sticky top-0 w-full h-screen flex items-center justify-center" id="scroll-video">
+    <div class="relative w-[90vw] max-w-[900px] aspect-[16/9]">
+      <video autoplay muted loop playsinline
+        class="absolute inset-0 w-full h-full object-cover scroll-video will-change-transform">
+        <source src="/hca-ruten.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-20 scrollzoom">
+        <img
+          src="/udforsk-ruten-endelig-version.png"
+          alt="Udforsk ruten"
+          class="scrollzoomimg will-change-transform w-full sm:w-[120%] md:w-[140%] lg:w-[160%] object-contain"
+        />
+      </div>
     </div>
   </div>
 </section>
 
 
 
-<!-- Motion One -->
+<!-- CTA under videoen (desktop) -->
+<section class="hidden md:block text-center max-w-[900px] w-full mx-auto mt-[-150px] opacity-0 translate-y-10 scroll-cta transition-all duration-700">
+  <p class="text-xl md:text-2xl font-oswald text-orange-700 mb-2">42,195 KM</p>
+  <Link href="/billetter" text="TILMELD" />
+</section>
+
+
+<!-- Motion One (kun desktop) -->
 <script type="module">
   import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
-  // Billede: zoom
-  scroll(
-    animate(".scrollzoomimg", {
-      scale: [1, 1.6]
-    }, {
-      easing: "ease-in-out"
-    }),
-    {
-      target: document.querySelector("#scroll-video"),
-      offset: ["start end", "end start"]
-    }
-  );
+  if (window.innerWidth >= 768) {
+    scroll(
+      animate(".scrollzoomimg", {
+        scale: [1.2, 1.6]
+      }, {
+        easing: "ease-in-out"
+      }),
+      {
+        target: document.querySelector(".scroll-container"),
+        offset: ["start start", "end start"]
+      }
+    );
 
-  // Video: zoom og flyt op
-  scroll(
-    animate(".scroll-video", {
-      scale: [1, 1.3],
-      y: ["0%", "-10%"]
-    }, {
-      easing: "ease-in-out"
-    }),
-    {
-      target: document.querySelector("#scroll-video"),
-      offset: ["start end", "end start"]
-    }
-  );
+    scroll(
+      animate(".scroll-video", {
+        scale: [1, 1.2],
+        y: ["0px", "-60px"]
+      }, {
+        easing: "ease-in-out"
+      }),
+      {
+        target: document.querySelector(".scroll-container"),
+        offset: ["start start", "end start"]
+      }
+    );
 
-  // CTA: fade + move op
-  scroll(
-    animate(".scroll-cta", {
-      opacity: [0, 1],
-      y: ["20px", "0px"]
-    }, {
-      easing: "ease-out"
-    }),
-    {
-      target: document.querySelector("#scroll-video"),
-      offset: ["center center", "end start"]
-    }
-  );
+    scroll(
+      animate(".scroll-cta", {
+        opacity: [0, 1],
+        y: ["20px", "0px"]
+      }, {
+        easing: "ease-out" }),
+      {
+        target: document.querySelector(".scroll-container"),
+        offset: ["center center", "end end"]
+      }
+    );
+  }
 </script>
 
+<section class="hidden md:block relative h-24">
+  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+    <div class="arrow arrow-first"></div>
+    <div class="arrow arrow-second"></div>
+  </div>
+</section>
 
 
 
@@ -132,26 +143,15 @@ const items = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<section class="bg-white py-20 px-6 mt-10 md:mt-30">
+<section class="py-20 px-6 mt-5 md:mt-30">
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
     <!-- Venstre: Tekst -->
-    <div>
-      <h2 class="text-3xl sm:text-5xl font-bebas text-orange-700 mb-4">H.C. ANDERSEN MARATHON</h2>
-      <p class="font-oswald sm:text-xl text-orange-700 leading-relaxed mb-6">
+    <div class="scroll-text">
+      <h2 class="text-3xl sm:text-5xl font-bebas text-orange-700 md:mb-4">H.C. ANDERSEN MARATHON</h2>
+      <p class="font-oswald sm:text-xl text-orange-700 leading-relaxed md:mb-6">
        Løb ruten to gange, så er du i mål!
       </p>
-      <p class="text-lg text-orange-700 font-instrument">
+      <p class="text-base pt-20 text-orange-700 font-instrument">
  Marathon­ruten på 42,195 km begynder og slutter ved Odense Idrætspark, hvor du sendes af sted i en intens stemning med heppekor og live-musik. De første 21,097 km følger du den samme rundstrækning som halvmarathonet: gennem Odenses brostens­gader med Brandts Klædefabrik og Sankt Knuds Kirke som historiske pejlemærker, videre langs å-stierne i Munke Mose og vestpå gennem Dalums rolige villakvarterer. Forplejningszonerne med High5-energibarer, vand og frugt dukker op ca. hvert 2,5 km, og lokale tilskuere skaber ekstra gejst undervejs.
 
 <br></br>Efter præcis halvvejs-punktet krydser du målstregen på stadion for at fylde depoterne op, før du giver dig i kast med anden omgang. Her mærker du både krop og sind blive sat på prøve, når de velkendte ruter gennem bykerne og ådalen gentages – men med fornyet energi fra publikum og de strategisk placerede drikkestationer. Den afgørende finale foregår på stadionbanen, hvor du fuldender marathonet i et brag af klapsalver og synet af målstregen. Ruten kombinerer Odenses rige kulturarv, naturskønne å-landskaber og et stærkt fællesskab – en ultimativ løbeoplevelse for både erfarne marathonløbere og førstegangs­debutanter.
@@ -159,7 +159,7 @@ const items = [
     </div>
 
     <!-- Højre: Strava Embed -->
-    <div class="w-full aspect-w-16 aspect-h-9 overflow-hidden">
+    <div class="scroll-strava w-full aspect-w-16 aspect-h-9 overflow-hidden">
       <div
         class="strava-embed-placeholder w-full h-full"
         data-embed-type="route"
@@ -184,56 +184,94 @@ const items = [
       display: none !important;
     }
   </style>
+  <script type="module">
+    import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+  
+    if (window.innerWidth >= 768) {
+      scroll(
+        animate(".scroll-text", {
+          opacity: [0, 1],
+          x: [-100, 0]
+        }, { duration: 0.8, easing: "ease-out" }),
+        {
+          target: document.querySelector(".scroll-text"),
+          offset: ["start 90%", "start 60%"]
+        }
+      );
+  
+      scroll(
+        animate(".scroll-strava", {
+          opacity: [0, 1],
+          x: [100, 0]
+        }, { duration: 0.8, easing: "ease-out" }),
+        {
+          target: document.querySelector(".scroll-strava"),
+          offset: ["start 90%", "start 60%"]
+        }
+      );
+    }
+  </script>
+  
+  
 </section>
 
 
-<section class="py-24 mt-30 px-6 sm:px-20">
+<section class="py-24 md:mt-30 px-6 sm:px-20">
   <!-- Container sørger for max-bredde + centrerer horisontalt -->
   <div class="container mx-auto">
     <!-- Grid med 1|2|3 kolonner og auto-center -->
     <div
-    class="
-      grid
-      grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
-      gap-10 sm:gap-8 lg:gap-10
-      justify-items-center
-      mx-auto
-    "
-  >
-      <div class="w-full max-w-sm mb-8 sm:mb-0">
+    class="mangeelementerinview grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-8 lg:gap-10 justify-items-center mx-auto">
+      <div class="w-full max-w-sm mb-8 sm:mb-0 mangeelementer1">
         <Card
           cardimage="/high-5.png"
           cardimagealt="high-5"
-          cardtitel="High-5 energi på ruten"
-          cardtekst="High-5 energi-stationerne står ca hver 2,5 km og byder på elektrolyt-rig energidrik og frisk kildevand, så du kan holde væskebalancen og energien oppe. Stærkt bemandet af folk der giver ekstra energi."
+          cardtitel="HIGH-5 ENERGI PÅ RUTEN"
+          cardtekst="High-5 energi-stationerne står ca hver 2,5 km og byder på elektrolyt-rig energidrik og frisk kildevand, så du kan holde væskebalancen og energien oppe."
         />
       </div>
 
-      <div class="w-full max-w-sm mb-8 sm:mb-0">
+      <div class="w-full max-w-sm mb-8 sm:mb-0 mangeelementer2">
         <Card
           cardimage="/stemningszone.png"
           cardimagealt="stemningszoner"
-          cardtitel="Stemningszoner"
+          cardtitel="STEMNINGSZONER"
           cardtekst="Stemningszonerne under HCA Marathon skaber fest og energi langs ruten med musik, heppere og underholdning, der motiverer løberne og engagerer publikum."
         />
       </div>
 
-      <div class="w-full max-w-sm mb-8 sm:mb-0">
+      <div class="w-full max-w-sm mb-8 sm:mb-0 mangeelementer3">
         <Card
-          cardimage="public/billede7.webp"
+          cardimage="/billede7.webp"
           cardimagealt="forplejningszoner"
-          cardtitel="Forplejningszoner"
+          cardtitel="FORPLEJNINGSZONER"
           cardtekst="Forplejningszonerne er placeret ca. hver 5 km angs ruten og byder på kildevand, energidrik og lette snacks som frugt og banan. Bemandet af frivillige sikrer de at løberne er tanket op."
         />
       </div>
     </div>
   </div>
 </section>
+<script>
+import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+if (window.innerWidth >= 768) {
+  inView(".mangeelementerinview", () => {
+    animate(".mangeelementer1", { x: [-300, 0], opacity: [0, 1] }, { duration: 1 });
+    animate(".mangeelementer2", { x: [300, 0], opacity: [0, 1] }, { duration: 1.2 });
+    animate(".mangeelementer3", { y: [100, 0], opacity: [0, 1] }, { duration: 1.4 });
+
+    return () => {
+      animate(".mangeelementer1", { x: [-300, 0], opacity: [0, 1] }, { duration: 1 });
+      animate(".mangeelementer2", { x: [300, 0], opacity: [0, 1] }, { duration: 1.2 });
+      animate(".mangeelementer3", { y: [100, 0], opacity: [0, 1] }, { duration: 1.4 });
+    };
+  });
+}
+
+</script>
 
 
-
-
-<section id="forplejningszoner" class="bg-white py-16 px-4 mt-30">
+<section id="forplejningszoner" class="bg-white py-16 px-4 md:mt-30">
   <div class="max-w-6xl mx-auto">
     <!-- Desktop grid: overskrift i venstre, tabel i højre -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

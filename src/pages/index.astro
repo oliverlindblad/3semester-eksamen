@@ -10,66 +10,95 @@ import Accordion from "../components/Accordion.astro";
 import Countdown from '../components/Countdown.astro';
 import Banner from '../components/Banner.astro';
 import Card from '../components/Card.astro';
+import Login from "../components/Login.astro";
 ---
-
-
-<MainLayout title="Titel">
+<MainLayout title="Forside">
+  <Login>
+  
+  </Login>
+  
   <!-- START HERO SECTION -->
-  <section class="pb-0 md:pb-20">
-  <section
-  class="
-    relative 
-     w-[90vw] md:w-full max-w-[900px] mx-auto 
-    overflow-hidden 
-
-    /* margin top/bund og padding på mobil/tablet */
-    mt-6 mb-6 px-4 
-    sm:mt-8 sm:mb-8 sm:px-5 
-    md:mt-2 md:mb-2 md:px-0 
-  "
-  style="aspect-ratio:16/9;"
->
-  <video
-    autoplay
-    muted
-    loop
-    class="absolute inset-0 w-full h-full object-cover"
-  >
-    <source src="/HCA-Marathon-NY.mp4" type="video/mp4" />
-  </video>
-</section>
-
-<!-- 2) Overskrifts-billedet UDENFOR videoen -->
-<div
-  class="relative w-full flex justify-center pointer-events-none z-10
-         -mt-[200px]   /* mobil: mindre overlap */
-         sm:-mt-[350px] /* small screens */
-         md:-mt-[450px] /* medium+ (desktop original) */
-  "
->
+<!-- MOBILE: statisk billede med titel -->
+<section class="block md:hidden w-full relative text-center px-4 py-6 pt-20">
   <img
-    src="/hca-marathon-endelig-version.png"
+    src="/dm-marathon.png"
     alt="Udforsk ruten"
-    class="
-      w-[100%]        /* mobil: fyld boksen */
-      sm:w-[120%]     /* small screens */
-      md:w-[140%]     /* medium screens */
-      lg:w-[160%]     /* large screens (desktop original) */
-      max-w-250
-      object-contain
-    "
+    class="w-full object-cover mb-4"
   />
-</div>
-	
+  <h1 class="text-2xl sm:text-3xl font-bebas text-orange-700">
+    HCA MARATHON
+  </h1>
 </section>
+
+
+<!-- DESKTOP: scrollytelling -->
+<section class="hidden md:block relative w-full h-[200vh] scroll-container">
+  <div class="sticky top-0 w-full h-screen flex items-center justify-center" id="scroll-video">
+    <div class="relative w-[90vw] max-w-[900px] aspect-[16/9]">
+      
+      <!-- Video -->
+      <video
+        autoplay muted loop playsinline
+        class="absolute inset-0 w-full h-full object-cover scroll-video will-change-transform"
+      >
+        <source src="/HCA-Marathon-NY.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Billede -->
+      <div class="absolute inset-0 flex justify-center items-end pointer-events-none z-20 scrollzoom">
+        <img
+          src="/hca-marathon-endelig-version.png"
+          alt="Udforsk ruten"
+          class="scrollzoomimg w-full sm:w-[120%] md:w-[140%] lg:w-[160%] object-contain translate-y-[-70px] will-change-transform"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <script type="module">
+    import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+  
+    if (window.innerWidth >= 768) {
+      // BILLEDE: zoom
+      scroll(
+        animate(".scrollzoomimg", {
+          scale: [1.2, 1.6]
+        }, { easing: "ease-in-out" }),
+        {
+          target: document.querySelector(".scroll-container"),
+          offset: ["start start", "end start"]
+        }
+      );
+  
+      // VIDEO: zoom + y-flyt
+      scroll(
+        animate(".scroll-video", {
+          scale: [1, 1.2],
+          y: ["10px", "-60px"]
+        }, { easing: "ease-in-out" }),
+        {
+          target: document.querySelector(".scroll-container"),
+          offset: ["start start", "end start"]
+        }
+      );
+    }
+  </script>
+  
 <!-- SLUT HERO SECTION -->
+ 
+
+
+
+
 
 <!-- START CAROUSEL SECTION -->
  <section>
 <div class="py-8 relative pt-30 w-screen">  
-  <h2 class="text-orange-700 text-3xl md:text-5xl font-bebas mb-2 md:mb-4 pl-4 md:pl-5">TILMELD DIG DIREKTE</h2>
+  <h2 class="text-orange-700 text-lg md:text-8xl font-bebas mb-3 md:mb-4 pl-4 md:pl-5">Vælg dit løb herunder</h2>
   
-
   <!-- Carousel fylder hele skærmen -->
   <div
     id="carousel"
@@ -83,14 +112,14 @@ import Card from '../components/Card.astro';
         <img
           src="/loeb-de-sidste-10.png"
           alt="løb de sidste 10"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >LØB DE SIDSTE 10</a>
       </div>
     </div>
@@ -103,14 +132,14 @@ import Card from '../components/Card.astro';
         <img
           src="/hca-marathon.png"
           alt="hca marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >HCA MARATHON</a>
       </div>
     </div>
@@ -123,14 +152,14 @@ import Card from '../components/Card.astro';
         <img
           src="/dm-marathon.png"
           alt="dm marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >DM MARATHON</a>
       </div>
     </div>
@@ -143,14 +172,14 @@ import Card from '../components/Card.astro';
         <img
           src="/halvmarathon.png"
           alt="halv marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >HALV MARATHON</a>
       </div>
     </div>
@@ -163,14 +192,14 @@ import Card from '../components/Card.astro';
         <img
           src="/mini-marathon.png"
           alt="mini marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >MINI MARATHON</a>
       </div>
     </div>
@@ -179,7 +208,7 @@ import Card from '../components/Card.astro';
   <button
   id="prevBtn"
   aria-label="Forrige"
-  class="absolute top-29 right-10 md:right-20
+  class="absolute top-28 md:top-29  right-10 md:right-20
          cursor-pointer
          text-xl md:text-3xl        /* større pil på desktop */
          p-2 md:p-4                 /* mere klik-flade på desktop */
@@ -190,7 +219,7 @@ import Card from '../components/Card.astro';
 <button
   id="nextBtn"
   aria-label="Næste"
-  class="absolute top-29 right-2 md:right-8
+  class="absolute top-28 md:top-29  right-2 md:right-8
          cursor-pointer
          text-xl md:text-3xl
          p-2 md:p-4
@@ -217,30 +246,88 @@ import Card from '../components/Card.astro';
   <!-- Start INFO SECTION -->
   <section>
     <div class="flex flex-col lg:flex-row gap-6 items-end max-w-4xl mx-auto px-4 pt-20 md:pt-30">
-      <!-- Billed-container med relative placering -->
       <div class="relative w-full lg:w-[45%]">
-        <!-- Billedet -->
-        <img src="/billede19.webp" alt="Halvmarathon" class="w-auto max-w-[220px] sm:max-w-sm md:max-w-full grayscale-90 object-cover mx-auto"/>
-
-      
-  
-        <!-- Overskrift ovenpå billedet -->
-        <h2 class="absolute top-1/5 left-3/7 -translate-x-[35%] -translate-y-[60%] text-2xl sm:text-3xl md:text-4xl lg:text-6xl  font-bebas text-orange-700  whitespace-nowrap">
+        <img src="/billede19.webp" alt="Halvmarathon"
+          class="scroll-image w-auto max-w-[220px] sm:max-w-sm md:max-w-full grayscale-90 object-cover mx-auto" />
+          <h2 class="scroll-heading absolute top-[0%] left-3/7 -translate-x-[35%] -translate-y-[60%]
+          text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bebas text-orange-700 whitespace-nowrap
+          md:opacity-0 md:translate-y-10 transition-all duration-700">
           HCA MARATHON FEJRER 25 ÅR I 2025
         </h2>
-
-      
       </div>
-  
-      <!-- Brødtekst som står ved siden af og flugter med bunden -->
-      <div class="w-full lg:w-[55%] text-sm font-instrument leading-relaxed space-y-3 self-end">
-        <p>Den 28. september 2025 inviterer HCA Marathon for 25. gang løbere og tilskuere til en festlig dag i Odenses gader. Her kombineres løbeglæde, fællesskab og en unik løbeoplevelse. Uanset om du er debutant eller erfaren maratonløber, er målet, at du rejser hjem med minder om en fantastisk dag. Med en trafikfri rute, der snor sig gennem hjertet af byen, er HCA Marathon en fejring for hele familien. Foruden det klassiske maraton kan du vælge ½ Marathon eller “Løb de sidste 10”. Selv de yngste kan tage del i løbefesten ved MiniMarathon på 4,2 km.
-            Tag med og skab dit eget eventyr i H.C. Andersens by – vi glæder os til at løbe sammen med dig!</p>
-      
-        <p><strong>Læs mere om løbet nedenfor.</strong></p>
+      <div class="scroll-text w-full lg:w-[55%] text-base font-instrument leading-relaxed space-y-3 self-end
+        md:opacity-0 md:translate-x-10 transition-all duration-700">
+        <p>Den 28. september 2025 inviterer HCA Marathon for 25. gang løbere og tilskuere til en festlig dag i Odenses gader. Her kombineres løbeglæde, fællesskab og en unik løbeoplevelse. Uanset om du er debutant eller erfaren maratonløber, er målet, at du rejser hjem med minder om en fantastisk dag.
+          Med en trafikfri rute, der snor sig gennem hjertet af byen, er HCA Marathon en fejring for hele familien. Foruden det klassiske maraton kan du vælge ½ Marathon eller “Løb de sidste 10”. Selv de yngste kan tage del i løbefesten ved MiniMarathon på 4,2 km.
+          Tag med og skab dit eget eventyr i H.C. Andersens by – vi glæder os til at løbe sammen med dig!
+          Læs mere om alt det praktisk FØR, UNDER og EFTER løbet nedenfor.</p>
+        <a href="/billetter" target="_blank">
+          <p class="underline underline-offset-2 cursor-pointer hover:text-orange-900"><strong>Læs mere om løbet her.</strong></p>
+        </a>
       </div>
     </div>
   </section>
+  
+
+  <script type="module">
+    import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+  
+    if (window.innerWidth >= 768) {
+      scroll(
+        animate(".scrollzoomimg", { scale: [1.2, 1.6] }, { easing: "ease-in-out" }),
+        {
+          target: document.querySelector(".scroll-container"),
+          offset: ["start start", "end start"]
+        }
+      );
+  
+      scroll(
+        animate(".scroll-video", {
+          scale: [1, 1.2],
+          y: ["10px", "-60px"]
+        }, { easing: "ease-in-out" }),
+        {
+          target: document.querySelector(".scroll-container"),
+          offset: ["start start", "end start"]
+        }
+      );
+  
+      scroll(
+        animate(".scroll-heading", {
+          opacity: [0, 1],
+          y: ["40px", "0px"]
+        }, { duration: 0.6, easing: "ease-out" }),
+        {
+          target: document.querySelector(".scroll-heading"),
+          offset: ["start 90%", "start 60%"]
+        }
+      );
+  
+      scroll(
+        animate(".scroll-image", {
+          scale: [1, 1.05]
+        }, { duration: 0.8, easing: "ease-in-out" }),
+        {
+          target: document.querySelector(".scroll-image"),
+          offset: ["start 95%", "end 20%"]
+        }
+      );
+  
+      scroll(
+        animate(".scroll-text", {
+          opacity: [0, 1],
+          x: ["50px", "0px"]
+        }, { duration: 0.6, easing: "ease-out" }),
+        {
+          target: document.querySelector(".scroll-text"),
+          offset: ["start 85%", "start 60%"]
+        }
+      );
+    }
+  </script>
+  
+  
+  
 
   <!-- SLUT INFO SECTION -->
 
@@ -253,9 +340,9 @@ import Card from '../components/Card.astro';
   <!-- SLUT COUNTDOWN SECTION -->
 
   <!-- START HORIZONTAL ACCORDION SECTION -->
-  <main class="py-16 pt-50 mx-prosa">
+  <section class="py-16 pt-50 mx-prosa">
     <HorizontalAccordion />
-  </main>
+  </section>
   <!-- SLUT HORIZONTAL ACCORDION SECTION -->
 
   <!-- START BANNER SECTION -->
@@ -275,3 +362,5 @@ import Card from '../components/Card.astro';
 
 											
 </MainLayout>
+
+

@@ -13,21 +13,63 @@ import Banner from '../components/Banner.astro';
 ---
 
 <MainLayout title="FAQ">
-  <section class="relative w-80 md:w-full md:max-w-4xl mx-auto overflow-hidden">
-    <!-- Baggrundsbillede -->
-    <img 
-      src="/billede2-faq-sort_hvid.webp"
-      alt="FAQ baggrund"
-      class="w-full object-cover object-center h-auto"
-    />
+  <section class="block md:hidden w-full relative text-center px-4 py-6 pt-30">
+    <h1 class="text-9xl sm:text-3xl font-bebas text-orange-700">
+      FAQ
+    </h1>
+  </section>
+  <section class="hidden md:block relative w-full h-[200vh] scroll-container">
+    <!-- Sticky container -->
+    <div class="sticky top-0 w-full h-screen flex items-center justify-center">
+      <!-- Indhold -->
+      <div class="relative w-[90vw] max-w-4xl aspect-[16/9]">
+        
+        <!-- Baggrundsbillede -->
+        <img 
+          src="/billede2-faq-sort_hvid.webp"
+          alt="FAQ baggrund"
+          class="absolute inset-0 w-full h-full object-cover object-center scroll-video will-change-transform"
+        />
   
-    <!-- Overlay + tekst -->
-    <div class="absolute inset-0 flex items-center justify-center">
-      <h1 class="text-orange-700 font-bebas text-6xl sm:text-8xl md:text-[15rem] leading-none drop-shadow-md">
-        FAQ
-      </h1>
+        <!-- Tekst -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-20 scrollzoom">
+          <h1 class="text-orange-700 font-bebas text-[20vw] md:text-[15rem] leading-none drop-shadow-md scrollzoomimg will-change-transform">
+            FAQ
+          </h1>
+        </div>
+  
+      </div>
     </div>
   </section>
+  <script type="module">
+    import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+  
+    if (window.innerWidth >= 768) {
+      // BILLEDE: zoom
+      scroll(
+        animate(".scrollzoomimg", {
+          scale: [1.2, 1.6]
+        }, { easing: "ease-in-out" }),
+        {
+          target: document.querySelector(".scroll-container"),
+          offset: ["start start", "end start"]
+        }
+      );
+  
+      // VIDEO: zoom + y-flyt
+      scroll(
+        animate(".scroll-video", {
+          scale: [1, 1.2],
+          y: ["10px", "-60px"]
+        }, { easing: "ease-in-out" }),
+        {
+          target: document.querySelector(".scroll-container"),
+          offset: ["start start", "end start"]
+        }
+      );
+    }
+  </script>
+    
   
   
 
@@ -35,49 +77,49 @@ import Banner from '../components/Banner.astro';
 
   <section class="px-4 py-16 max-w-6xl mx-auto">
     <!-- FØR LØBET -->
-    <div class="mb-12">
+    <div class="mb-12 section-before-run">
       <h2 class="font-oswald text-3xl md:text-5xl text-orange-700 text-center mb-6">
         FØR LØBET
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-4 scroll-left">
           <Accordion
             overskrift="HCA Marathon"
-            tekst="Her kan du læse alt om at forberede dig til HCA Marathon…"
+            tekst="Den fynske hovedstad har siden H. C. Andersens været hjem for mange eventyrfortællinger, og siden år 2000 har der været skrevet utallige løbeeventyr i byen under HCA Marathon. Vil du skrive dit eget løbeeventyr, så er HCA Marathon det perfekte sted med en hurtig og trafikfri rute i Odenses gader. Flere har sat personlige rekorder på ruten, og i 2019 blev HCA Marathon kåret som verdens hurtigste maraton (målt ud fra gennemsnitlig sluttid). Så har du en rekord i kikkerten, så er HCA Marathon det helt rigtige sted at kigge hen for ruten er bare hurtig. Du kan læse mere om undersøgelsen hos Runners World."
           />
           <Accordion
             overskrift="Startnummer"
-            tekst="Dit startnummer modtager du pr. e-mail senest 14 dage før løbet."
+            tekst="Startnumre skal afhentes på sportsmessen i Odense Idrætspark, Israels Plads 3 – Odense V. Fredag kl. 14.00-18.00 Lørdag kl. 10.00-16.30 Søndag kl. 8.00-09.30. På dit startnummer sidder chippen til tidtagning – undgå at bøje startnummeret, så chippen ikke tager skade. BEMÆRK Du må ikke ændre på startnummeret, da det er diskvalifikationsgrundlag jvf. DAF-reglerne. Bliv ligeledes på den afmærkede rute, da der er udlagt måtter til måling af mellemtider. Manglende mellemtider medfører diskvalifikation."
           />
           <Accordion
             overskrift="Ændring i din tilmelding"
-            tekst="Du kan ændre din tilmelding indtil d. 1. august via din profil."
+            tekst="Har du ændringer til din tilmelding såsom at ændre navn, distance eller overdrage til en anden, så beder vi dig om at få det rettet, så resultatlisten kan blive korrekt for alle løbere. Du kan selv foretage ændringerne online "
           />
         </div>
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-4 scroll-right">
           <Accordion
-            overskrift="Klargøring"
-            tekst="Husk at tjekke vejrudsigten og pak løbetøj efter forholdene."
+            overskrift="Sportsmesse - fri entré"
+            tekst="Sportsmessen foregår i Odense Idrætspark, Israels Plads 3 – Odense V. Fredag 26. september kl. 14.00-18.00 Lørdag 27. september kl. 10.00-16.30 Søndag 28. september kl. 8.00-16.00"
           />
           <Accordion
             overskrift="Parkering"
-            tekst="Der er gratis parkering ved Israels Plads – se kortet her."
+            tekst="Bilister opfordres til at komme i god tid på løbsdagen og benytte parkeringspladserne på de omkringliggende veje til Odense Idrætspark. Husk at tjekke skiltningen, da der nogle steder er tidsbegrænset parkering eller påkrævet betaling."
           />
           <Accordion
-            overskrift="Bus & tog"
-            tekst="Brug bybus 34 eller S-tog til Odense Banegård, derefter 10 min. gang."
+            overskrift="Bagageopbevaring"
+            tekst="Ved afhentning af startnummer får du udleveret en racebag, som du skal bruge til at få opbevaret din bagage i. Bagageopbevaringen er bemandet i Odense Idrætspark (hal 2) og er åben på løbsdagen kl. 8.00 – 16.30 og kun til den udleverede racebag. HUSK at sætte slippen fra dit startnummer på din racebag. Har du mere bagage med, end der kan være i den udleverede racebag, er der ekstra bagageopbevaring i teltet på p-pladsen ved Nature Energy Park fra kl. 08.00 – 16.30 (kr. 25 pr. stk./kontant eller mobilepay). Har du bagage til “Løb de sidste 10”, er der også mulighed for bagage-indlevering ved starten på Flakhaven ved Odense Rådhus. Bagagen bliver fragtet til Odense Idrætspark. "
           />
         </div>
       </div>
     </div>
 
     <!-- UNDER LØBET -->
-    <div class="mb-12">
+    <div class="mb-12 section-during-run md:pt-20">
       <h2 class="font-oswald text-3xl md:text-5xl text-orange-700 text-center mb-6">
         UNDER LØBET
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-4 scroll-left">
           <Accordion
             overskrift="Servicezoner"
             tekst="Der er forplejning hver 5 km på ruten – se kortet her…"
@@ -91,7 +133,7 @@ import Banner from '../components/Banner.astro';
             tekst="Løb altid til højre på vejen og følg politiets anvisninger."
           />
         </div>
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-4 scroll-right">
           <Accordion
             overskrift="Toiletter"
             tekst="Der er mobile toiletter ved start/mål og hver 7 km."
@@ -109,12 +151,12 @@ import Banner from '../components/Banner.astro';
     </div>
 
     <!-- EFTER LØBET -->
-    <div class="mb-12">
+    <div class="mb-12 section-after-run md:pt-20">
       <h2 class="font-oswald text-3xl md:text-5xl text-orange-700 text-center mb-6">
         EFTER LØBET
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-4 scroll-left">
           <Accordion
             overskrift="Præmieuddeling"
             tekst="På torvet midt i byen kl. 15:00 kårer vi vinderne."
@@ -128,7 +170,7 @@ import Banner from '../components/Banner.astro';
             tekst="Se den fulde resultatliste på sportstiming.dk."
           />
         </div>
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-4 scroll-right">
           <Accordion
             overskrift="Forfriskninger"
             tekst="Frugt, vand og energidrikke til alle deltagere i målområdet."
@@ -144,6 +186,85 @@ import Banner from '../components/Banner.astro';
         </div>
       </div>
     </div>
+
+    <script type="module">
+     import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+if (window.innerWidth >= 768) {
+
+  // FØR LØBET
+  scroll(
+    animate(".section-before-run .scroll-left", {
+      opacity: [0, 1],
+      x: [-100, 0]
+    }, { duration: 0.8, easing: "ease-out" }),
+    {
+      target: document.querySelector(".section-before-run"),
+      offset: ["start 90%", "start 60%"]
+    }
+  );
+
+  scroll(
+    animate(".section-before-run .scroll-right", {
+      opacity: [0, 1],
+      x: [100, 0]
+    }, { duration: 0.8, easing: "ease-out" }),
+    {
+      target: document.querySelector(".section-before-run"),
+      offset: ["start 90%", "start 60%"]
+    }
+  );
+
+  // UNDER LØBET
+  scroll(
+    animate(".section-during-run .scroll-left", {
+      opacity: [0, 1],
+      x: [-100, 0]
+    }, { duration: 0.8, easing: "ease-out" }),
+    {
+      target: document.querySelector(".section-during-run"),
+      offset: ["start 90%", "start 60%"]
+    }
+  );
+
+  scroll(
+    animate(".section-during-run .scroll-right", {
+      opacity: [0, 1],
+      x: [100, 0]
+    }, { duration: 0.8, easing: "ease-out" }),
+    {
+      target: document.querySelector(".section-during-run"),
+      offset: ["start 90%", "start 60%"]
+    }
+  );
+
+  // EFTER LØBET
+  scroll(
+    animate(".section-after-run .scroll-left", {
+      opacity: [0, 1],
+      x: [-100, 0]
+    }, { duration: 0.8, easing: "ease-out" }),
+    {
+      target: document.querySelector(".section-after-run"),
+      offset: ["start 90%", "start 60%"]
+    }
+  );
+
+  scroll(
+    animate(".section-after-run .scroll-right", {
+      opacity: [0, 1],
+      x: [100, 0]
+    }, { duration: 0.8, easing: "ease-out" }),
+    {
+      target: document.querySelector(".section-after-run"),
+      offset: ["start 90%", "start 60%"]
+    }
+  );
+
+}
+
+    </script>
+    
 
     <!-- KONTAKT OS -->
     <div class="pt-20">
