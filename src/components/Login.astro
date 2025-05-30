@@ -6,39 +6,39 @@ const adgangskode = "marathon2025";
 <!-- Overlay der spærrer for alt indhold -->
 <div
   id="login-overlay"
-  class="fixed inset-0 flex items-center justify-center bg-gray-100 px-4 z-50"
+  class="fixed inset-0 flex items-center justify-center bg-white px-4 z-50"
 >
   <div class="w-full max-w-md">
     <!-- 1) Beskyttet velkomstsektion (skjult indtil login) -->
     <div
       id="welcome-section"
-      class="hidden bg-white p-6 rounded-xl shadow-lg mb-4 text-center space-y-2"
+      class="hidden bg-orange-700 p-6  mb-4 text-center space-y-2"
     >
-      <h1 class="text-3xl font-bebas text-orange-700">Velkommen til HCA Marathon</h1>
-      <p class="text-base font-instrument">
-        Dette indhold er nu synligt, fordi du har skrevet den korrekte adgangskode.
+      <h1 class="text-3xl font-bebas text-orange-50">Velkommen til HCA Marathon</h1>
+      <p class="text-lg text-orange-50 font-instrument">
+        Korrekte adgangskode!<br> Dette indhold er nu synligt.
       </p>
     </div>
 
     <!-- 2) Login-form (synlig indtil korrekt kode) -->
     <form
       id="loginForm"
-      class="bg-white p-6 rounded-xl shadow-lg space-y-4"
+      class="bg-orange-700 p-6 space-y-4"
     >
-      <h2 class="text-2xl font-bold text-orange-700 text-center">Adgangskode</h2>
+      <h2 class="text-2xl font-bebas text-orange-50 text-center">Adgangskode</h2>
       <input
         type="password"
         id="pw"
         placeholder="Indtast adgangskode"
-        class="w-full border-2 border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-orange-700"
+        class="w-full text-orange-900 font-instrument px-4 py-2 focus:ring-0 bg-orange-50 focus:outline-none focus:border-orange-700"
       />
       <button
         type="submit"
-        class="w-full bg-orange-700 text-white font-semibold py-2 rounded-md hover:bg-orange-800 transition"
+        class="w-full bg-orange-50 font-instrument text-orange-900 font-semibold py-2 hover:text-orange-700 transition"
       >
-        Login
+        LOGIN
       </button>
-      <p id="error" class="text-red-600 hidden text-sm">Forkert adgangskode</p>
+      <p id="error" class="text-orange-50 font-instrument hidden text-sm">Forkert adgangskode</p>
     </form>
   </div>
 </div>
