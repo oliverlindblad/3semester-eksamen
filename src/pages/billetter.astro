@@ -14,13 +14,13 @@ import thumbsup from "../assets/images/thumbsup.png";
     
     <section x-data="{ active: null }">
 
-      <img src="/ditlob.png" alt="vælg dit løb" class="block pt-30 w-40 sm:w-32 md:w-110 mx-auto object-contain pb-10 md:pb-5"/>
+      <img src="/ditlob.png" alt="vælg dit løb" class="block pt-30 w-60 sm:w-32 md:w-110 mx-auto object-contain pb-10 md:pb-5"/>
     
         <div class="max-w-6xl mx-auto px-4 md:pl-45">
             <!-- Overskrift -->
 
             <h2
-              class="font-bebas text-sm sm:text-4xl md:text-4xl text-left md:text-left text-orange-700 leading-tight tracking-wide mb-2 md:-6"
+              class="font-bebas text-xl sm:text-4xl md:text-4xl text-center md:text-left md:text-left text-orange-700 leading-tight tracking-wide mb-2 md:-6"
             >
               Tilmeldingsmuligheder
             </h2>
@@ -67,25 +67,62 @@ import thumbsup from "../assets/images/thumbsup.png";
         <div x-show="active" x-transition>
           <!-- HALV MARATHON -->
           <div x-show="active === 'halv'" x-transition>
-            <div class="flex flex-col lg:flex-row gap-6 items-end max-w-4xl mx-auto px-4 pt-20 md:pt-30">
-              <div class="relative w-full lg:w-[45%]">
-                <img src="/billede10.webp" alt="Halvmarathon"
-                  class="scroll-image w-auto max-w-[220px] sm:max-w-sm md:max-w-full grayscale-90 object-cover mx-auto" />
-                  <h2 class="scroll-heading absolute top-[-10%] left-3/7 -translate-x-[35%] -translate-y-[60%]
-                  text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bebas text-orange-700 whitespace-nowrap
-                  md:opacity-0 md:translate-y-10 transition-all duration-700">
-                  ALT DU SKAL VIDE OM HALV MARATHON 2025
-                </h2>
-              </div>
-              <div class="scroll-text w-full lg:w-[55%] text-base font-instrument leading-relaxed space-y-3 self-end
-                md:opacity-0 md:translate-x-10 transition-all duration-700">
-                <p>HCA Halvmarathon er en af Danmarks mest stemningsfulde løbeoplevelser og en hyldest til eventyr og fællesskab. Løbet finder sted i hjertet af Odense og tiltrækker hvert år tusindvis af deltagere og tilskuere. Uanset om du er erfaren løber eller løber dit første halvmarathon, byder HCA på en rute fyldt med opbakning, underholdning og atmosfære.<br><br>
-                  - Officiel tidtagning med chip<br> - Startnummer med navn <br> - Lækker løbstrøje (hvis tilvalgt) <br> - Forplejning under og efter løbet <br> - Medalje ved målstregen
-                </p>
-              
-                <p><strong>Se mere om billetten nedenfor.</strong></p>
-              </div>
+            <div
+            class="flex flex-col lg:flex-row gap-6 items-end max-w-4xl mx-auto px-4 pt-20 md:pt-30"
+          >
+            <!-- Billede + overskrift -->
+            <div class="relative w-full lg:w-[45%]">
+              <img
+                src="/billede10.webp"
+                alt="Halvmarathon"
+                class="scroll-image w-auto max-w-[220px] sm:max-w-sm md:max-w-full grayscale-90 object-cover mx-auto"
+              />
+          
+              <h2
+                class="scroll-heading absolute
+          
+                  /* — Mobil: centreret og løftet lidt op — */
+                  top-1/8 left-1/2 -translate-x-1/2 -translate-y-1/2
+          
+                  /* — Tablet+ (md): jeres gamle værdier + animation startstil — */
+                  md:top-[-10%] md:left-[42.857%] md:-translate-x-[35%] md:-translate-y-[60%]
+                  md:opacity-0 md:translate-y-10 md:transition-all md:duration-700
+          
+                  text-2xl sm:text-3xl md:text-4xl lg:text-6xl
+                  font-bebas text-orange-700 whitespace-nowrap
+                "
+              >
+                ALT DU SKAL VIDE OM HALV MARATHON 2025
+              </h2>
             </div>
+          
+            <!-- Tekst -->
+            <div
+              class="scroll-text w-full lg:w-[55%] text-base font-instrument leading-relaxed space-y-3 self-end
+          
+                /* Mobil: vis uden animation */
+                opacity-100 translate-x-0
+          
+                /* Tablet+ (md): animation startstil */
+                md:opacity-0 md:translate-x-10 md:transition-all md:duration-700
+              "
+            >
+              <p>
+                HCA Halvmarathon er en af Danmarks mest stemningsfulde løbeoplevelser og en hyldest til eventyr
+                og fællesskab. Løbet finder sted i hjertet af Odense og tiltrækker hvert år tusindvis af
+                deltagere og tilskuere. Uanset om du er erfaren løber eller løber dit første halvmarathon, byder
+                HCA på en rute fyldt med opbakning, underholdning og atmosfære.
+                <br /><br />
+                - Officiel tidtagning med chip<br />
+                - Startnummer med navn <br />
+                - Lækker løbstrøje (hvis tilvalgt) <br />
+                - Forplejning under og efter løbet <br />
+                - Medalje ved målstregen
+              </p>
+              <p><strong>Se mere om billetten nedenfor.</strong></p>
+            </div>
+          </div>
+          
             <script type="module">
               import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
             
