@@ -1,6 +1,6 @@
 ---
 // Props med defaults
-const { size = "md", color = "orange", href = "#", invisible = "TILMELD" , text = "TILMELD" } = Astro.props;
+const { size = "md", color = "orange", href = "#", invisible = "TILMELD" , text = "TILMELD", id ="accordionButton" } = Astro.props;
 
 // Minimal opslags-tabeller
 const sizes = {
@@ -22,7 +22,7 @@ const cls = `
 `.replace(/\s+/g, " ");
 ---
 
-<a href={href} class={cls}>
+<a id={id} href={href} class={cls}>
   <!-- Placeholder holder bredden -->
   <span class="invisible select-none"> {invisible}<slot /></span>
 
