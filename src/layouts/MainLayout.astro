@@ -24,6 +24,7 @@ const { title } = Astro.props;
 			<Header></Header>
 		</header>
 		
+		
 		<main class="mx-auto">
 			<slot />
 		</main>
@@ -31,16 +32,6 @@ const { title } = Astro.props;
 		<footer>
 		
 		</footer>
-		<script>
-			if (window.innerWidth >= 768) {
-			  const pw = prompt("Adgangskode påkrævet:");
-			  if (pw !== "1") {
-				alert("Forkert adgangskode");
-				location.href = "https://copenhagenmarathon.dk/";
-			  }
-			}
-		  </script>
-	
 	
 	</body>
 </html>

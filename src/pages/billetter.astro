@@ -36,8 +36,8 @@ import thumbsup from "../assets/images/thumbsup.png";
               ]">
                 <div
                   @click="active = option.id; $nextTick(() => $refs.content.scrollIntoView({ behavior: 'smooth' }));"
-                  :class="{ 'grayscale-75': active === option.id }"
-                  class="relative cursor-pointer hover:grayscale-75 text-center transition duration-200 w-40 group 
+                  :class="{ 'grayscale-100': active === option.id }"
+                  class="relative cursor-pointer hover:grayscale-100 text-center transition duration-200 w-40 group 
                   basis-1/2   max-w-[4rem]     
            sm:basis-1/3 sm:max-w-[9rem] 
            md:basis-auto md:w-40">

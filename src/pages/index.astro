@@ -10,10 +10,13 @@ import Accordion from "../components/Accordion.astro";
 import Countdown from '../components/Countdown.astro';
 import Banner from '../components/Banner.astro';
 import Card from '../components/Card.astro';
+import Login from "../components/Login.astro";
 ---
-
-
 <MainLayout title="Forside">
+  <Login>
+  
+  </Login>
+  
   <!-- START HERO SECTION -->
 <!-- MOBILE: statisk billede med titel -->
 <section class="block md:hidden w-full relative text-center px-4 py-6 pt-20">
@@ -26,6 +29,7 @@ import Card from '../components/Card.astro';
     HCA MARATHON
   </h1>
 </section>
+
 
 <!-- DESKTOP: scrollytelling -->
 <section class="hidden md:block relative w-full h-[200vh] scroll-container">
@@ -93,7 +97,7 @@ import Card from '../components/Card.astro';
 <!-- START CAROUSEL SECTION -->
  <section>
 <div class="py-8 relative pt-30 w-screen">  
-  <h2 class="text-orange-700 text-3xl md:text-5xl font-bebas mb-2 md:mb-4 pl-4 md:pl-5">TILMELD DIG DIREKTE</h2>
+  <h2 class="text-orange-700 text-lg md:text-8xl font-bebas mb-3 md:mb-4 pl-4 md:pl-5">Vælg dit løb herunder</h2>
   
   <!-- Carousel fylder hele skærmen -->
   <div
@@ -108,14 +112,14 @@ import Card from '../components/Card.astro';
         <img
           src="/loeb-de-sidste-10.png"
           alt="løb de sidste 10"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >LØB DE SIDSTE 10</a>
       </div>
     </div>
@@ -128,14 +132,14 @@ import Card from '../components/Card.astro';
         <img
           src="/hca-marathon.png"
           alt="hca marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >HCA MARATHON</a>
       </div>
     </div>
@@ -148,14 +152,14 @@ import Card from '../components/Card.astro';
         <img
           src="/dm-marathon.png"
           alt="dm marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >DM MARATHON</a>
       </div>
     </div>
@@ -168,14 +172,14 @@ import Card from '../components/Card.astro';
         <img
           src="/halvmarathon.png"
           alt="halv marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >HALV MARATHON</a>
       </div>
     </div>
@@ -188,14 +192,14 @@ import Card from '../components/Card.astro';
         <img
           src="/mini-marathon.png"
           alt="mini marathon"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-75"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-100"
         />
       </a>
       </div>
       <div class="mt-2 font-oswald text-lg md:text-xl pl-2">
         <a
           href="https://www.sportstiming.dk/event/15085" target="_blank"
-          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-75 group-hover:underline underline-offset-4"
+          class="block text-orange-700 transition-colors duration-300 group-hover:grayscale-100 group-hover:underline underline-offset-4"
         >MINI MARATHON</a>
       </div>
     </div>
@@ -204,7 +208,7 @@ import Card from '../components/Card.astro';
   <button
   id="prevBtn"
   aria-label="Forrige"
-  class="absolute top-29 right-10 md:right-20
+  class="absolute top-28 md:top-29  right-10 md:right-20
          cursor-pointer
          text-xl md:text-3xl        /* større pil på desktop */
          p-2 md:p-4                 /* mere klik-flade på desktop */
@@ -215,7 +219,7 @@ import Card from '../components/Card.astro';
 <button
   id="nextBtn"
   aria-label="Næste"
-  class="absolute top-29 right-2 md:right-8
+  class="absolute top-28 md:top-29  right-2 md:right-8
          cursor-pointer
          text-xl md:text-3xl
          p-2 md:p-4
